@@ -11,28 +11,28 @@
 
   <body>
 
-      <form method="post">
+      <form  method="post">
           <fieldset class="row g-3">
               <legend>Registrar Cliente</legend>
 
               <div class="input-group col-6">
                   <label class="input-group-text" for="id">ID:</label>
-                  <input type="text" class="form-control" id="id" name="datos[]"><br><br>
+                  <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
               </div>
 
               <div class="input-group col-6">
                   <label class="input-group-text" for="nombre">Nombre:</label>
-                  <input type="text" class="form-control" id="nombre" name="datos[]"><br><br>
+                  <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
               </div>
 
               <div class="input-group col-6">
                   <label class="input-group-text" for="telefono">Teléfono:</label>
-                  <input type="text" class="form-control" id="telefono" name="datos[]"><br><br>
+                  <input type="text" class="form-control" id="telefono" name="datosCliente[]"><br><br>
               </div>
 
               <div class="input-group col-6">
                   <label class="input-group-text" for="direccion">direccion:</label>
-                  <input type="text" class="form-control" id="direccion" name="datos[]"><br><br>
+                  <input type="text" class="form-control" id="direccion" name="datosCliente[]"><br><br>
               </div>
 
               <button class="btn btn-success" type="submit">Registrar Cliente</button>
@@ -40,11 +40,12 @@
       </form>
       <?php
 
-        $datos = $_POST['datos'] ?? NULL;
+        $datoscliente = $_POST['datosCliente'] ?? NULL;
 
-        $cliente = new Cliente($datos[0]  ?? NULL, $datos[1] ?? NULL, $datos[2] ?? NULL, $datos[3] ?? NULL);
+        $cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $datoscliente[2] ?? NULL, $datoscliente[3] ?? NULL);
+        $cliente->mostrarDatos();
         echo '<br>' ;
-        var_dump($datos);
+        var_dump($datoscliente);
         echo '<br>' ;
         var_dump($cliente);
         echo '<br>' ;

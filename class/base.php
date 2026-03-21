@@ -13,4 +13,6 @@ abstract class Base
     {
         return $this->id;
     }
+
+    abstract public function mostrarDatos();
 }

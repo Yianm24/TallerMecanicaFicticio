@@ -1,6 +1,13 @@
 <?php
 
-class Conex
+$dataBase = mysqli_connect("localhost", "root", "", "tallermecanicoficticio");
+if (!$dataBase) {
+    die("Error de conexión: " . mysqli_connect_error());
+}else {
+    echo "Conexión exitosa a la base de datos.";
+}
+
+/*class Conex
 {
     private $pdo;
 
@@ -29,3 +36,4 @@ class Conex
         echo 'Cerrar' ;
     }
 }
+*/

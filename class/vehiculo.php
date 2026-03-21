@@ -17,4 +17,29 @@ require_once "base.php";
             $this->idCliente = $idCliente;
             $this->placa = $placa;
         }
+
+         public function mostrarDatos($opcion = null)
+        {
+        if ($opcion === null) {
+            echo "ID: {$this->id}, marca: {$this->marca}, modelo: {$this->modelo}, ano: {$this->ano}, placa: {$this->placa}<br>";
+        } else {
+            switch ($opcion) {
+                case 1:
+                    echo $this->id;
+                    break;
+                case 2:
+                    echo $this->marca;
+                    break;
+                case 3:
+                    echo $this->modelo;
+                    break;
+                case 4:
+                    echo $this->ano;
+                    break;
+                case 5:
+                    echo $this->placa;
+                    break;
+            }
+        }
+        }
     }
