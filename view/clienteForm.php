@@ -31,10 +31,10 @@ $datoscliente = $_POST['datosCliente'] ?? NULL;
 
 $cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $datoscliente[2] ?? NULL, $datoscliente[3] ?? NULL);
 $cliente->mostrarDatos();
-echo '<br>';
-var_dump($datoscliente);
-echo '<br>';
-var_dump($cliente);
+// echo '<br>';
+// var_dump($datoscliente);
+// echo '<br>';
+// var_dump($cliente);
 echo '<br>';
 ?>
 <table class="table">

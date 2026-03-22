@@ -35,10 +35,10 @@
 $datosvehiculo = $_POST['datosVehiculo'] ?? NULL;
 
 $vehiculo = new Vehiculo($datosvehiculo[0]  ?? NULL, $datosvehiculo[1] ?? NULL, $datosvehiculo[2] ?? NULL, $datosvehiculo[3] ?? NULL, $datosvehiculo[4] ?? NULL, $datosvehiculo[5] ?? NULL);
-echo '<br>';
-var_dump($datosvehiculo);
-echo '<br>';
-var_dump($vehiculo);
+// echo '<br>';
+// var_dump($datosvehiculo);
+// echo '<br>';
+// var_dump($vehiculo);
 echo '<br>';
 ?>
 <table class="table">

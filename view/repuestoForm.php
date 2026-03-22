@@ -30,10 +30,10 @@
 $datosrepuesto = $_POST['datosRepuesto'] ?? NULL;
 
 $repuesto = new Repuesto($datosrepuesto[0]  ?? NULL, $datosrepuesto[1] ?? NULL, $datosrepuesto[2] ?? NULL, $datosrepuesto[3] ?? NULL);
-echo '<br>';
-var_dump($datosrepuesto);
-echo '<br>';
-var_dump($repuesto);
+// echo '<br>';
+// var_dump($datosrepuesto);
+// echo '<br>';
+// var_dump($repuesto);
 echo '<br>';
 ?>
 <table class="table">
