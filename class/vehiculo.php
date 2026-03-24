@@ -18,7 +18,8 @@ require_once "base.php";
             $this->placa = $placa;
         }
 
-         public function mostrarDatos($opcion = null)
+         
+        public function mostrarDatos($opcion = null)
         {
         if ($opcion === null) {
             echo "ID: {$this->id}, marca: {$this->marca}, modelo: {$this->modelo}, ano: {$this->ano}, placa: {$this->placa}<br>";
@@ -39,7 +40,8 @@ require_once "base.php";
                 case 5:
                     echo $this->placa;
                     break;
+                }
             }
         }
-        }
+    
     }

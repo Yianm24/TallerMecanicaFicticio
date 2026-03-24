@@ -2,7 +2,29 @@
     <fieldset class="row g-3">
         <legend>Registrar Cliente</legend>
 
-        <div class="input-group col-6">
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="id">ID:</label>
+            <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
+
+            <label class="input-group-text" for="nombre">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
+        </div>
+
+        <div class="input-group">
+            <label class="input-group-text" for="id">ID:</label>
+            
+            <div class="col-3">
+                <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
+            </div>
+
+            <label class="input-group-text" for="nombre">Nombre:</label>
+            
+            <div class="col">
+                <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
             <label class="input-group-text" for="id">ID:</label>
             <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
         </div>

@@ -1,5 +1,5 @@
 <?php
-  require_once "class/conex.php";
+  //require_once "class/conex.php";
   require_once "class/cliente.php";
   require_once "class/repuesto.php";
   require_once "class/vehiculo.php";
@@ -10,6 +10,7 @@
 <html lang="es">
   <?php 
     include 'view/head.php';
+    include 'view/header.php';
   ?>
   <body>
     <?php 
