@@ -9,10 +9,9 @@ abstract class Base
         $this->id = $id;
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
+    abstract public function getId();
+    
+    abstract public function setId($id);
 
     abstract public function mostrarDatos();
 }

@@ -20,6 +20,25 @@ class Cliente extends Base
         $this->direccion = $direccion;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function actualizarDatosCliente($nombre, $telefono, $direccion)
+    {
+        $this->nombre = $nombre;
+        $this->telefono = $telefono;
+        $this->direccion = $direccion;
+    }
+
+     
+
     public function mostrarDatos($opcion = null)
     {
         if ($opcion === null) {
@@ -41,9 +60,7 @@ class Cliente extends Base
             }
         }
     }
-
-    /*public function consultar(){
-        $stmt = $this->conexion->get_PDO()->prepare("select * from cliente");
-        stmt->execute()
-    }*/
+    
+    
+   
 }

@@ -17,7 +17,6 @@ class Repuesto extends Base
 
     public function reducirstock($cantidad)
     {
-
         if ($this->stock >= $cantidad) {
             $this->stock -= $cantidad;
             echo "Stock reducido. Nuevo stock: {$this->stock}<br>";
@@ -26,22 +25,45 @@ class Repuesto extends Base
         }
     }
 
+    public function aumentarstock($cantidad)
+    {
+        $this->stock += $cantidad;
+        echo "Stock aumentado. Nuevo stock: {$this->stock}<br>";
+    }
+
+     public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function actualizarDatosRepuesto($nombre, $precio, $stock)
+    {
+        $this->nombre = $nombre;
+        $this->precio = $precio;
+        $this->stock = $stock;
+    }
+
     public function mostrarDatos($opcion = null)
     {
         if ($opcion === null) {
             echo "ID: {$this->id}, Nombre: {$this->nombre}, precio: {$this->precio}, stock: {$this->stock}<br>";
         } else {
             switch ($opcion) {
-                case 1:
+                case 'id':
                     echo $this->id;
                     break;
-                case 2:
+                case 'nombre':
                     echo $this->nombre;
                     break;
-                case 3:
+                case 'precio':
                     echo $this->precio;
                     break;
-                case 4:
+                case 'stock':
                     echo $this->stock;
                     break;
             }

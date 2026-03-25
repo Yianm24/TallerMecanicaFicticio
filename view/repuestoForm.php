@@ -49,12 +49,11 @@ echo '<br>';
     <tbody>
         <tr>
             <th scope="row">1</th>
-            <td><?php $repuesto->mostrarDatos(1); ?></td>
-            <td><?php $repuesto->mostrarDatos(2); ?></td>
-            <td><?php $repuesto->mostrarDatos(3); ?></td>
-            <td><?php $repuesto->mostrarDatos(4); ?></td>
+            <td><?php $repuesto->mostrarDatos('id'); ?></td>
+            <td><?php $repuesto->mostrarDatos('nombre'); ?></td>
+            <td><?php $repuesto->mostrarDatos('precio'); ?></td>
+            <td><?php $repuesto->mostrarDatos('stock'); ?></td>
         </tr>
-        <tr>
 
     </tbody>
 </table>

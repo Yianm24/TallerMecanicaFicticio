@@ -9,7 +9,7 @@
             <label class="input-group-text" for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
         </div>
-
+<!--
         <div class="input-group">
             <label class="input-group-text" for="id">ID:</label>
             
@@ -33,7 +33,7 @@
             <label class="input-group-text" for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
         </div>
-
+-->
         <div class="input-group col-6">
             <label class="input-group-text" for="telefono">Teléfono:</label>
             <input type="text" class="form-control" id="telefono" name="datosCliente[]"><br><br>
@@ -52,7 +52,7 @@
 $datoscliente = $_POST['datosCliente'] ?? NULL;
 
 $cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $datoscliente[2] ?? NULL, $datoscliente[3] ?? NULL);
-$cliente->mostrarDatos();
+//$cliente->mostrarDatos();
 // echo '<br>';
 // var_dump($datoscliente);
 // echo '<br>';
