@@ -1,4 +1,4 @@
-<form method="post">
+<form class="form-colors2" method="post">
     <fieldset class="row g-3">
         <legend>Registrar Repuesto</legend>
 
@@ -21,8 +21,10 @@
             <label class="input-group-text" for="stock">Stock:</label>
             <input type="number" class="form-control" id="stock" name="datosRepuesto[]"><br><br>
         </div>
-
-        <button class="btn btn-success" type="submit">Registrar Repuesto</button>
+        
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-secondary" type="submit">Registrar Repuesto</button>
+        </div>
     </fieldset>
 </form>
 <?php

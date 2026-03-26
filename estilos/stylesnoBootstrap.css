@@ -1,3 +1,39 @@
+:root{
+    --body-background: #bdbdbd;
+    --color-primario: #6327B9BD;
+    --color-secundario: #77776c;
+    --color-terciario: #8bb5b8;
+    --color-complementario: #565FF5;
+}
+
 body{
     padding: 4rem;
+    background-color: var(--body-background);
+}
+
+form{
+    padding: 2rem;
+    border-radius: 0.4rem;
+
+}
+
+.form-colors1{
+    background-color: var(--color-primario);
+    color: white;
+    
+}
+
+.form-colors1 button{
+    background-color: var(--color-complementario);
+    border: none;
+    
+}
+
+.form-colors2{
+    background-color: var(--color-secundario);
+    color: white;
+}
+.form-colors2 button{
+    background-color: var(--color-complementario);
+    border: none;
 }

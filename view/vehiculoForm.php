@@ -1,4 +1,4 @@
-<form method="post">
+<form class="form-colors1" method="post">
     <fieldset class="row g-3">
         <legend>Registrar Vehiculo</legend>
 
@@ -27,7 +27,9 @@
             <input type="text" class="form-control" id="placa" name="datosVehiculo[]"><br><br>
         </div>
 
-        <button class="btn btn-success" type="submit">Registrar Vehículo</button>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-secondary" type="submit">Registrar Vehículo</button>
+        </div>
     </fieldset>
 </form>
 <?php
