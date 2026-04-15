@@ -1,7 +1,7 @@
 <?php
 
 require_once "base.php";
-//require_once "conex.php";
+
 
 class Cliente extends Base
 {
@@ -9,11 +9,11 @@ class Cliente extends Base
     private $nombre;
     private $telefono;
     private $direccion;
-    //private $conex;
+    
 
     public function __construct($id, $nombre, $telefono, $direccion)
     {
-        //$this->conex = new Conex();
+        $this->getConnection();
         parent::__construct($id);
         $this->nombre = $nombre;
         $this->telefono = $telefono;

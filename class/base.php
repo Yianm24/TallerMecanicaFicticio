@@ -1,6 +1,7 @@
 <?php
 
-abstract class Base
+require_once "conex.php";
+abstract class Base extends Conexion
 {
     protected $id;
 
