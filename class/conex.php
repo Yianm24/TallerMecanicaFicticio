@@ -1,39 +1,36 @@
 <?php
 
-$dataBase = mysqli_connect("localhost", "root", "", "tallermecanicoficticio");
-if (!$dataBase) {
-    die("Error de conexión: " . mysqli_connect_error());
-}else {
-    echo "Conexión exitosa a la base de datos.";
+// $dataBase = mysqli_connect("localhost", "root", "", "tallermecanicoficticio");
+// if (!$dataBase) {
+//     die("Error de conexión: " . mysqli_connect_error());
+// }else {
+//     echo "Conexión exitosa a la base de datos.";
+// }
+
+abstract class Conexion{
+public $host="localhost";
+public $namedb="tallermecanicoficticio";
+public $userdb="root";
+public $passwd="";
+private $conexion;
+
+public function __construct() {
+    $this->getConnection();
 }
 
-/*class Conex
-{
-    private $pdo;
+public function getConnection():PDO{
+try {
 
-    public function __construct()
-    {
-        $this->conectar();
-    }
+$dsn="mysql:host=".$this->host.";dbname=".$this->namedb.";charset=utf8";
+$this->conexion=new PDO($dsn,$this->userdb,$this->passwd);
 
-    public function conectar(){
-        try {
-            $dns = "mysql:host=localhos;dbname=taller";
-            $this->pdo = new PDO($dns, "root", " " );
+ $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            echo "conexion exitosa";
-        } catch (PDOException $e) {
-            die("error en conexion" . $e->getMessage());
-        }
-    }
-
-    public function get_PDO(){
-        return $this->pdo;
-    }
-
-    public function cerrarConexion(){
-        $this->pdo = null;
-        echo 'Cerrar' ;
-    }
+ echo "conexion a base de datos de manera exitosa";
+} catch (PDOException $error) {
+     die('tas pelao papa. como vas a meter la base de datos en excel ' . $error->getMessage());
 }
-*/
+return $this->conexion;
+}
+
+}
