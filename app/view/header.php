@@ -1,7 +1,7 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="imgs/logo.svg" alt="Logo" width="50" height="44" class="d-inline-block align-text-top">
+      <img src="assets\imgs\logo.svg" alt="Logo" width="50" height="44" class="d-inline-block align-text-top">
         <span class="ms-2">Taller Mecanico: Las Roscas C.A</span>
     </a>
 
