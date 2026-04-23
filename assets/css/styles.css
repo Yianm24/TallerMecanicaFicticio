@@ -1,39 +1,77 @@
-:root{
-    --body-background: #bdbdbd;
-    --color-primario: #6327B9BD;
-    --color-secundario: #77776c;
+:root {
+    /* Se mantuvo tu paleta, ajustando sutilmente la opacidad y los tonos para mayor solidez y contraste */
+    --body-background: #e0e4e8;
+    /* Un gris un poco más limpio, con un ligero toque metálico */
+    --color-primario: #6327b9;
+    /* Se eliminó el canal alfa final para que el fondo sea 100% sólido */
+    --color-secundario: #5a5a52;
+    /* Un tono ligeramente más oscuro para mejorar la lectura del texto blanco */
     --color-terciario: #8bb5b8;
-    --color-complementario: #565FF5;
+    --color-complementario: #4b54e6;
+    /* Un azul un toque más vibrante para llamar a la acción */
 }
 
-body{
+body {
     padding: 4rem;
     background-color: var(--body-background);
+    font-family: system-ui, -apple-system, sans-serif;
+    /* Tipografía moderna y nativa sin necesidad de importar fuentes */
 }
 
-form{
-    padding: 2rem;
-    border-radius: 0.4rem;
-
+form {
+    padding: 2.5rem;
+    /* Un poco más de espacio interno para que el contenido "respire" */
+    border-radius: 12px;
+    /* Bordes un poco más suaves y modernos */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    /* Sombra elegante que separa el formulario del fondo */
+    margin-bottom: 2rem;
+    /* Separación útil si colocas un formulario debajo de otro */
 }
 
-.form-colors1{
-    background-color: var(--color-primario);
+.form-colors1 {
+    background: linear-gradient(135deg, var(--color-primario), #4a1c8c);
+    /* Degradado sutil en lugar de color plano */
     color: white;
-    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Un borde translúcido que le da un efecto "premium" */
 }
 
-.form-colors1 button{
+.form-colors1 button {
     background-color: var(--color-complementario);
-    border: none;
-    
-}
-
-.form-colors2{
-    background-color: var(--color-secundario);
     color: white;
-}
-.form-colors2 button{
-    background-color: var(--color-complementario);
+    /* Asegura que el texto del botón sea legible */
     border: none;
+    padding: 0.8rem 1.5rem;
+    /* Da volumen al botón para que sea fácil de clickear */
+    border-radius: 6px;
+    /* Coherencia con los bordes del formulario */
+    font-weight: 600;
+    /* Letra más gruesa para destacar la acción */
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    /* Cambia el cursor a una 'manito' al pasar por encima */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    /* Sombra propia para el botón */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Prepara el botón para reaccionar suavemente */
+}
+
+.form-colors2 {
+    background: linear-gradient(135deg, var(--color-secundario), #40403a);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-colors2 button {
+    background-color: var(--color-complementario);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
