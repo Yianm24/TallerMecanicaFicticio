@@ -20,13 +20,10 @@ require_once "app/model/vehiculo.php";
 <body>
   <?php
   include 'app\view\header.php';
-  ?>
-  <h1>Taller Mecanico: Las Roscas C.A</h1>
-  <?php
   require_once 'app\view\clienteForm.php';
-  require_once 'app\view\repuestoForm.php';
-  require_once 'app\view\Aumentar_StockForm.php';
-  require_once 'app\view\vehiculoForm.php';
+  // require_once 'app\view\repuestoForm.php';
+  // require_once 'app\view\Aumentar_StockForm.php';
+  // require_once 'app\view\vehiculoForm.php';
   ?>
 </body>
 

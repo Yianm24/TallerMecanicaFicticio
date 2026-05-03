@@ -1,57 +1,107 @@
-<form class="form-colors1" method="post">
-    <fieldset class="row g-3">
-        <legend>Registrar Cliente</legend>
+<main class="container">
+    <!-- <form class="form-colors1" method="post">
+        <fieldset class="row g-3">
+            <legend>Registrar Cliente</legend>
 
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="id">ID:</label>
-            <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
-
-            <label class="input-group-text" for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
-        </div>
-<!--
-        <div class="input-group">
-            <label class="input-group-text" for="id">ID:</label>
-            
-            <div class="col-3">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="id">ID:</label>
                 <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
-            </div>
 
-            <label class="input-group-text" for="nombre">Nombre:</label>
-            
-            <div class="col">
+                <label class="input-group-text" for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
             </div>
-        </div>
 
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="id">ID:</label>
-            <input type="text" class="form-control" id="id" name="datosCliente[]"><br><br>
-        </div>
+            <div class="input-group col-6">
+                <label class="input-group-text" for="telefono">Teléfono:</label>
+                <input type="text" class="form-control" id="telefono" name="datosCliente[]"><br><br>
+            </div>
 
-        <div class="input-group col-6">
-            <label class="input-group-text" for="nombre">Nombre:</label>
-            <input type="text" class="form-control" id="nombre" name="datosCliente[]"><br><br>
-        </div>
--->
-        <div class="input-group col-6">
-            <label class="input-group-text" for="telefono">Teléfono:</label>
-            <input type="text" class="form-control" id="telefono" name="datosCliente[]"><br><br>
-        </div>
+            <div class="input-group col-6">
+                <label class="input-group-text" for="direccion">direccion:</label>
+                <input type="text" class="form-control" id="direccion" name="datosCliente[]"><br><br>
+            </div>
 
-        <div class="input-group col-6">
-            <label class="input-group-text" for="direccion">direccion:</label>
-            <input type="text" class="form-control" id="direccion" name="datosCliente[]"><br><br>
-        </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-secondary" type="submit">Registrar Cliente</button>
+            </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-secondary" type="submit">Registrar Cliente</button>
+        </fieldset>
+    </form> -->
+
+    <form>
+        <div class="form-container">
+            <h2 class="mb-4">Registrar Cliente</h2>
+            <fieldset class="row g-3">
+                <legend>Identificar Cliente:</legend>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control custom-input" placeholder="Ingrese la cedula del cliente:" aria-label="Cedula">
+                    </div>
+                    <div class="input-group col-md-6">
+                        <input type="text" aria-label="Nombre" placeholder="Nombre:" class="form-control">
+                        <input type="text" aria-label="Apellido" placeholder="Apellido:" class="form-control">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row g-3 mb-4">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Prefijo
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">0424</a></li>
+                        <li><a class="dropdown-item" href="#">0426</a></li>
+                        <li><a class="dropdown-item" href="#">0416</a></li>
+                        <li><a class="dropdown-item" href="#">0414</a></li>
+                        <li><a class="dropdown-item" href="#">0412</a></li>
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button" name="numerotelefonico" placeholder="Número de teléfono">
+                </div>
+            </div>
+            <div class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
+                <span class="input-group-text border-0 bg-white ps-4"><i class="bi bi-geo-alt text-danger"></i></span>
+                <input type="text" class="form-control border-0 py-3" placeholder="Enter location, address, or zip code..." aria-label="Location">
+            </div>
+
+            <button class="btn w-100 py-3 search-btn" type="button">
+                <i class="bi bi-search me-2 animated-icon"></i> Find Jobs
+            </button>
         </div>
-        
-    </fieldset>
-</form>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>John</td>
+                <td>Doe</td>
+                <td>@social</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
 <?php
-
+/*
 $datoscliente = $_POST['datosCliente'] ?? NULL;
 
 $cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $datoscliente[2] ?? NULL, $datoscliente[3] ?? NULL);
@@ -60,27 +110,6 @@ $cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $dat
 // var_dump($datoscliente);
 // echo '<br>';
 // var_dump($cliente);
-echo '<br>';
+echo '<br>';*/
 ?>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">telefono</th>
-            <th scope="col">direccion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td><?php $cliente->mostrarDatos(1); ?></td>
-            <td><?php $cliente->mostrarDatos(2); ?></td>
-            <td><?php $cliente->mostrarDatos(3); ?></td>
-            <td><?php $cliente->mostrarDatos(4); ?></td>
-        </tr>
-        <tr>
-
-    </tbody>
-</table>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,57 +1,88 @@
 <?php
 
-require_once "base.php";
+// require_once "base.php";
 
 
-class Cliente extends Base
-{
+// class Cliente extends Base
+// {
 
-    private $nombre;
-    private $telefono;
-    private $direccion;
+//     private $nombre;
+//     private $telefono;
+//     private $direccion;
     
 
-    public function __construct($id, $nombre, $telefono, $direccion)
-    {
-        $this->getConnection();
-        parent::__construct($id);
-        $this->nombre = $nombre;
-        $this->telefono = $telefono;
-        $this->direccion = $direccion;
-    }
+//     public function __construct($id, $nombre, $telefono, $direccion )
+//     {
+//         $this->getConnection();
+//         parent::__construct($id);
+//         $this->nombre = $nombre;
+//         $this->telefono = $telefono;
+//         $this->direccion = $direccion;
+//     }
 
     
-    public function actualizarDatosCliente($nombre, $telefono, $direccion)
-    {
-        $this->nombre = $nombre;
-        $this->telefono = $telefono;
-        $this->direccion = $direccion;
-    }
+// Método para obtener todos los usuarios
+//         public function getAllUsers() {
 
-     
+//             $consult = $this->conexion->prepare("SELECT * FROM user WHERE estado = 1");
+//             $consult->execute();
+//             $users = $consult->fetchAll();
+//             return $users;
+//         }
 
-    public function mostrarDatos($opcion = null)
-    {
-        if ($opcion === null) {
-            echo "ID: {$this->id}, Nombre: {$this->nombre}, Teléfono: {$this->telefono}, Dirección: {$this->direccion}<br>";
-        } else {
-            switch ($opcion) {
-                case 1:
-                    echo $this->id;
-                    break;
-                case 2:
-                    echo $this->nombre;
-                    break;
-                case 3:
-                    echo $this->telefono;
-                    break;
-                case 4:
-                    echo $this->direccion;
-                    break;
-            }
-        }
-    }
-    
-    
-   
-}
+//         public function addUser (int $id, string $name, string $lastname, string $email) {
+            
+//             $this->id = $id;
+//             $this->name = $name;
+//             $this->lastname = $lastname;
+//             $this->email = $email;
+
+//             return $this->registerUser();
+//         }
+
+//         private function registerUser() {
+            
+
+//             // Preparar la consulta SQL
+//             $query = "INSERT INTO user (id, nombre, apellido, correo) VALUES (?, ?, ?, ?)";
+//             $stmt = $this->conex->prepare($query);
+
+//             // Vincular los parámetros
+//             $stmt->bindValue(1, $this->id);
+//             $stmt->bindValue(2, $this->name);
+//             $stmt->bindValue(3, $this->lastname);
+//             $stmt->bindValue(4, $this->email);
+//             $result = $stmt->execute();
+//             // Ejecutar la consulta
+//             if ($result) {
+//                 return "<script>alert('Usuario registrado exitosamente');</script>";
+//             } else {
+//                 return "<script>alert('Registro Invalido, Intente nuevamente');</script>";
+//             }
+//         }
+
+//         public function deleteUser(int $id) {
+//             $this->id = $id;
+
+//             return $this->deleteUserById();
+//         }
+
+//         private function deleteUserById() {
+//             try {
+//                 // Preparar la consulta SQL
+//                 $query = "UPDATE `user` SET estado = 0 WHERE id = ?";
+//                 $delete = $this->conex->prepare($query);
+
+//                 // Vincular el parámetro
+//                 $delete->bindValue(1, $this->id);
+//                 // Ejecutar la consulta
+//                 $delete->execute();
+                
+//                 return "Usuario eliminado exitosamente";
+//             } catch (\PDOException $e) {
+//                 return "Error al eliminar el usuario: " . $e->getMessage();
+//             }
+//         }
+
+
+// }

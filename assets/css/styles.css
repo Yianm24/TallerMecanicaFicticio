@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+
 :root {
     /* Se mantuvo tu paleta, ajustando sutilmente la opacidad y los tonos para mayor solidez y contraste */
     --body-background: #e0e4e8;
@@ -11,8 +13,23 @@
     /* Un azul un toque más vibrante para llamar a la acción */
 }
 
+.navbar a {
+    color: inherit;
+}
+
+/* Estilos personalizados para el Navbar */
+.custom-navbar {
+    margin-bottom:1rem ;
+    background-color: var(--color-primario);
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+    font-family: 'Montserrat', sans-serif;
+    color: white !important; /* Forzamos el color blanco frente a los estilos de Bootstrap */
+}
+
 body {
-    padding: 4rem;
     background-color: var(--body-background);
     font-family: system-ui, -apple-system, sans-serif;
     /* Tipografía moderna y nativa sin necesidad de importar fuentes */
@@ -75,3 +92,81 @@ form {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/*Comienzo Estilos de plantilla*/
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: white;
+    margin-bottom: 2rem;
+}
+
+.search-label {
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.form-floating label {
+    color: #6c757d;
+}
+
+.search-btn {
+    background-color: var(--color-complementario);
+    color: white;
+    border: none;
+    transition: all 0.3s;
+}
+
+.search-btn:hover {
+    background-color: var(--color-primario);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.animated-icon {
+    transition: all 0.3s;
+}
+
+.search-btn:hover .animated-icon {
+    transform: scale(1.2);
+}
+
+.filter-badge {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-badge:hover {
+    transform: translateY(-2px);
+}
+
+.custom-input {
+    border-radius: 30px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.floating-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/*Final de Estilos de plantilla*/

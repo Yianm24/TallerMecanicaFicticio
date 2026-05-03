@@ -7,7 +7,7 @@
 //     echo "Conexión exitosa a la base de datos.";
 // }
 
-namespace app/config/conex.php;
+// namespace app/config/conex.php;
 abstract class Conexion{
 public $host="localhost";
 public $namedb="tallermecanicoficticio";
