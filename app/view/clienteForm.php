@@ -29,14 +29,14 @@
 
 <main class="container">
 
-    <form action="app/controller/clientecontroller.php" method="post">
+    <form method="post">
         <div class="form-container">
             <h2 class="mb-4">Registrar Cliente</h2>
             <fieldset class="row g-3">
                 <legend>Introduzca los datos del cliente:</legend>
                 <div class="row g-3 mb-4">
                     <div class="col-md-4 w-auto">
-                        <input type="text" class="form-control custom-input" name="id" placeholder="Ingrese la cedula del cliente:" aria-label="Cedula">
+                        <input type="text" class="form-control custom-input" name="id" placeholder="Cedula del cliente:" aria-label="Cedula">
                     </div>
                     <div class="input-group col-md-6 w-auto">
                         <input type="text" aria-label="Nombre" name="nombre" placeholder="Nombre:" class="form-control custom-input ">
@@ -45,6 +45,7 @@
                 </div>
             </fieldset>
             <div class="row g-3 mb-4">
+                <!--
                 <div class="input-group mb-3">
                     <button class="btn btn-outline-secondary dropdown-toggle custom-input" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Prefijo
@@ -57,6 +58,10 @@
                         <li><a class="dropdown-item" href="#">0412</a></li>
                     </ul>
                     <input type="number" class="form-control custom-input" aria-label="Text input with dropdown button" name="telefono" placeholder="Número de teléfono">
+                </div>
+            -->
+                <div class="mb-4">
+                    <input type="text" class="form-control custom-input" name="telefono" placeholder="Numero Telefonico:" aria-label="Número de teléfono">
                 </div>
             </div>
             <div class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
@@ -73,44 +78,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Direccion</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>John</td>
-                <td>Doe</td>
-                <td>@social</td>
-            </tr>
+            <!-- Se realiza un bucle (foreach) para mostrar los usuarios -->
+            <?php foreach ($result as $cliente) { ?>
+                <tr>
+                    <td><?php echo $cliente["id"]; ?></td>
+                    <td><?php echo $cliente["nombre"]; ?></td>
+                    <td><?php echo $cliente["apellido"]; ?></td>
+                    <td><?php echo $cliente["telefono"]; ?></td>
+                    <td><?php echo $cliente["direccion"]; ?></td>
+                </tr>
+            <?php } ?>
+            <!-- Se cierra el ciclo -->
         </tbody>
     </table>
 </main>
 <?php
-/*
-$datoscliente = $_POST['datosCliente'] ?? NULL;
 
-$cliente = new Cliente($datoscliente[0]  ?? NULL, $datoscliente[1] ?? NULL, $datoscliente[2] ?? NULL, $datoscliente[3] ?? NULL);
-//$cliente->mostrarDatos();
-// echo '<br>';
-// var_dump($datoscliente);
-// echo '<br>';
-// var_dump($cliente);
-echo '<br>';*/
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

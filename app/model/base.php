@@ -1,6 +1,6 @@
 <?php
 
-require_once "app/config/conex.php";
+require "app/config/conex.php";
 //abstract class Base extends Conexion
 abstract class Base extends Conexion
 {

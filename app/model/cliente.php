@@ -1,6 +1,6 @@
 <?php
 
-require_once "base.php";
+require "base.php";
 
 class Cliente extends Base
 {
@@ -14,7 +14,7 @@ class Cliente extends Base
     {
         // Inicializa la conexión en la clase Base
         parent::__construct();
-        
+
         if ($id !== null) {
             $this->id = $id;
         }
@@ -22,6 +22,16 @@ class Cliente extends Base
         $this->apellido = $apellido;
         $this->telefono = $telefono;
         $this->direccion = $direccion;
+    }
+
+    public function getAllClientes() {
+        try {
+            $consult = $this->getConnection()->prepare("SELECT * FROM cliente");
+            $consult->execute();
+            return $consult->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            return []; // Retorna un array vacío en caso de error
+        }
     }
 
     // Función pública para asignar datos y llamar al registro
@@ -42,7 +52,7 @@ class Cliente extends Base
         try {
             // Preparar la consulta SQL (INSERT INTO cliente)
             $query = "INSERT INTO cliente (id, nombre, apellido, telefono, direccion) VALUES (?, ?, ?, ?, ?)";
-            
+
             // Utiliza getConnection() heredado de Conexion para preparar la consulta
             $stmt = $this->getConnection()->prepare($query);
 
@@ -52,15 +62,11 @@ class Cliente extends Base
             $stmt->bindValue(3, $this->apellido);
             $stmt->bindValue(4, $this->telefono);
             $stmt->bindValue(5, $this->direccion);
-            
+
             // Ejecutar la consulta
             $result = $stmt->execute();
-            
-            if ($result) {
-                return "<script>alert('Cliente registrado exitosamente');</script>";
-            } else {
-                return "<script>alert('Registro Inválido, Intente nuevamente');</script>";
-            }
+
+            return $result;
         } catch (\PDOException $e) {
             // Manejo de errores por ejemplo, si un id de cliente ya está duplicado
             return "<script>alert('Error al registrar el cliente: " . $e->getMessage() . "');</script>";

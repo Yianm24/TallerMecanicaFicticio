@@ -1,55 +1,71 @@
-<?php 
-require_once "base.php";
- class Vehiculo extends Base
-    {
-        private $marca;
-        private $modelo;
-        private $ano;
-        private $idCliente;
-        private $placa;
+<?php
+require "base.php";
+class Vehiculo extends Base
+{
+    private $placa;
+    private $marca;
+    private $modelo;
+    private $ano;
+    private $detalles;
 
-        public function __construct($id, $marca, $modelo, $ano, $idCliente, $placa)
-        {
-            parent::__construct($id);
-            $this->marca = $marca;
-            $this->modelo = $modelo;
-            $this->ano = $ano;
-            $this->idCliente = $idCliente;
+    public function __construct($placa = null, $marca = null, $modelo = null, $ano = null, $detalles = null)
+    {
+        parent::__construct();
+        if ($placa !== null) {
             $this->placa = $placa;
         }
 
-    public function actualizarDatosVehiculo($marca, $modelo, $ano, $idCliente, $placa)
-    {
         $this->marca = $marca;
         $this->modelo = $modelo;
         $this->ano = $ano;
-        $this->idCliente = $idCliente;
-        $this->placa = $placa;
+        $this->detalles = $detalles;
     }
 
-    public function mostrarDatos($opcion = null)
-    {
-    if ($opcion === null) {
-        echo "ID: {$this->id}, marca: {$this->marca}, modelo: {$this->modelo}, ano: {$this->ano}, placa: {$this->placa}<br>";
-    } else {
-        switch ($opcion) {
-            case 1:
-                echo $this->id;
-                break;
-            case 2:
-                echo $this->marca;
-                break;
-            case 3:
-                echo $this->modelo;
-                break;
-            case 4:
-                echo $this->ano;
-                break;
-            case 5:
-                echo $this->placa;
-                break;
-            }
+    public function getAllVehiculos() {
+        try {
+            $consult = $this->getConnection()->prepare("SELECT * FROM vehiculo");
+            $consult->execute();
+            return $consult->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            return []; // Retorna un array vacío en caso de error
         }
     }
-    
+
+
+    public function addVehiculo($placa, $marca, $modelo, $ano, $detalles)
+    {
+        $this->placa = $placa;
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->ano = $ano;
+        $this->detalles = $detalles;
+
+        return $this->registerVehiculo();
     }
+
+    private function registerVehiculo()
+    {
+        try {
+            // Preparar la consulta SQL (INSERT INTO vehiculo)
+            $query = "INSERT INTO vehiculo (placa,marca, modelo, ano, detalles) VALUES (?, ?, ?, ?, ?)";
+
+            // Utiliza getConnection() heredado de Conexion para preparar la consulta
+            $stmt = $this->getConnection()->prepare($query);
+
+            // Vincular los parámetros para evitar inyecciones SQL
+            $stmt->bindValue(1, $this->placa);
+            $stmt->bindValue(2, $this->marca);
+            $stmt->bindValue(3, $this->modelo);
+            $stmt->bindValue(4, $this->ano);
+            $stmt->bindValue(5, $this->detalles);
+
+            // Ejecutar la consulta
+            $result = $stmt->execute();
+
+            return $result;
+        } catch (\PDOException $e) {
+            // Manejo de errores por ejemplo, si un id de cliente ya está duplicado
+            return "<script>alert('Error al registrar el vehículo: " . $e->getMessage() . "');</script>";
+        }
+    }
+}

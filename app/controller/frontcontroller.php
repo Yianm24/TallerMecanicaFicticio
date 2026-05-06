@@ -13,8 +13,9 @@
 <body>
   <?php
   include "app/view/header.php";
-  require_once "app/controller/clientecontroller.php";  
-  // require_once "app/view/repuestoForm.php";
+  // require_once "app/controller/clientecontroller.php";
+  require_once "app/controller/vehiculocontroller.php";  
+  // require_once "app/controller/repuestocontroller.php";
   // require_once 'app/view/Aumentar_StockForm.php';
   // require_once "app/view/vehiculoForm.php";
   ?>

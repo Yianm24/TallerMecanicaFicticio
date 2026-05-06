@@ -13,11 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $cliente->addCliente($_POST['id'], $_POST['nombre'] , $_POST['apellido'], $_POST['telefono'], $_POST['direccion']);
         
         // Imprimir el resultado para que el navegador ejecute el <script>
-        echo $result; 
+        //echo $result;
+        echo "<script>alert('Datos registrados correctamente');</script>";  
     } else {
         echo "<script>alert('Falta uno o varios datos por ingresar');</script>";
     }
 }
+$result = $cliente->getAllClientes();
 
-require_once __DIR__ . "/../view/clienteForm.php";
+include "app/view/clienteForm.php";
         
