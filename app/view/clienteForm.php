@@ -1,5 +1,4 @@
-<main class="container">
-    <!-- <form class="form-colors1" method="post">
+<!-- <form class="form-colors1" method="post">
         <fieldset class="row g-3">
             <legend>Registrar Cliente</legend>
 
@@ -28,24 +27,26 @@
         </fieldset>
     </form> -->
 
-    <form>
+<main class="container">
+
+    <form action="app/controller/clientecontroller.php" method="post">
         <div class="form-container">
             <h2 class="mb-4">Registrar Cliente</h2>
             <fieldset class="row g-3">
-                <legend>Identificar Cliente:</legend>
+                <legend>Introduzca los datos del cliente:</legend>
                 <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control custom-input" placeholder="Ingrese la cedula del cliente:" aria-label="Cedula">
+                    <div class="col-md-4 w-auto">
+                        <input type="text" class="form-control custom-input" name="id" placeholder="Ingrese la cedula del cliente:" aria-label="Cedula">
                     </div>
-                    <div class="input-group col-md-6">
-                        <input type="text" aria-label="Nombre" placeholder="Nombre:" class="form-control">
-                        <input type="text" aria-label="Apellido" placeholder="Apellido:" class="form-control">
+                    <div class="input-group col-md-6 w-auto">
+                        <input type="text" aria-label="Nombre" name="nombre" placeholder="Nombre:" class="form-control custom-input ">
+                        <input type="text" aria-label="Apellido" name="apellido" placeholder="Apellido:" class="form-control custom-input ">
                     </div>
                 </div>
             </fieldset>
             <div class="row g-3 mb-4">
                 <div class="input-group mb-3">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-secondary dropdown-toggle custom-input" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Prefijo
                     </button>
                     <ul class="dropdown-menu">
@@ -55,16 +56,16 @@
                         <li><a class="dropdown-item" href="#">0414</a></li>
                         <li><a class="dropdown-item" href="#">0412</a></li>
                     </ul>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button" name="numerotelefonico" placeholder="Número de teléfono">
+                    <input type="number" class="form-control custom-input" aria-label="Text input with dropdown button" name="telefono" placeholder="Número de teléfono">
                 </div>
             </div>
             <div class="input-group mb-4 shadow-sm rounded-pill overflow-hidden">
                 <span class="input-group-text border-0 bg-white ps-4"><i class="bi bi-geo-alt text-danger"></i></span>
-                <input type="text" class="form-control border-0 py-3" placeholder="Enter location, address, or zip code..." aria-label="Location">
+                <input type="text" class="form-control border-0 py-3" name="direccion" placeholder="Direccion" aria-label="Direccion del cliente">
             </div>
 
-            <button class="btn w-100 py-3 search-btn" type="button">
-                <i class="bi bi-search me-2 animated-icon"></i> Find Jobs
+            <button class="btn w-100 py-3 search-btn" type="submit">
+                <i class="bi bi-search me-2 animated-icon"></i> Registrar Cliente
             </button>
         </div>
     </form>
