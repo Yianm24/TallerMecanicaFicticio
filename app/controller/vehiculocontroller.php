@@ -1,6 +1,9 @@
 <?php
 
-include "app/model/vehiculo.php";
+namespace App\Controller;
+use App\Model\Vehiculo;
+
+//include "app/model/vehiculo.php";
 
 $vehiculo = new Vehiculo();
 

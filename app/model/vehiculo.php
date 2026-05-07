@@ -1,5 +1,6 @@
 <?php
-require "base.php";
+namespace App\Model;
+//require "base.php";
 class Vehiculo extends Base
 {
     private $placa;

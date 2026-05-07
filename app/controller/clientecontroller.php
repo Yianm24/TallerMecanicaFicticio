@@ -1,6 +1,9 @@
 <?php
 
-include "app/model/cliente.php";
+namespace App\Controller;
+use App\Model\Cliente;
+
+//include "app/model/cliente.php";
 
 $cliente = new Cliente();
 

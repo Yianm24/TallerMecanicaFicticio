@@ -6,21 +6,31 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitb7a1ed921a1d9c647b86f49d7bce983d
 {
+    public static $files = array (
+        '98190d6622ad1b156d4d5a8ce3242f1f' => __DIR__ . '/../..' . '/app/config/config_composer.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        'U' =>
+        'A' =>
         array (
-            'User\\TallerMecanicaFicticio\\' => 28,
+            'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'User\\TallerMecanicaFicticio\\' =>
+        'App\\' =>
         array (
-            0 => 'C:\\xampp\\htdocs\\Proyectos PHP\\TallerMecanicaFicticio\\vendor',
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
     public static $classMap = array (
+        'App\\Config\\Conexion' => __DIR__ . '/../..' . '/app/Config/Conexion.php',
+        'App\\Model\\Base' => __DIR__ . '/../..' . '/app/Model/Base.php',
+        'App\\Model\\Cliente' => __DIR__ . '/../..' . '/app/Model/Cliente.php',
+        'App\\Model\\OrdenServicio' => __DIR__ . '/../..' . '/app/Model/OrdenServicio.php',
+        'App\\Model\\Repuesto' => __DIR__ . '/../..' . '/app/Model/Repuesto.php',
+        'App\\Model\\Vehiculo' => __DIR__ . '/../..' . '/app/Model/Vehiculo.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

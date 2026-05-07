@@ -1,6 +1,9 @@
 <?php
 
-include "app/model/repuesto.php";
+namespace App\Controller;
+use App\Model\Repuesto;
+
+//include "app/model/repuesto.php";
 
 $repuesto = new Repuesto();
 

@@ -1,5 +1,6 @@
 <?php
-require "base.php";
+namespace App\Model;
+//require "base.php";
 class Repuesto extends Base
 {
     private $nombre;

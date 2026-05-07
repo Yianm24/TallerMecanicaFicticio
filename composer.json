@@ -3,8 +3,11 @@
     "description": "\"mini proyecto de universidad de un taller mecanico\"",
     "license": "MIT",
     "autoload": {
+        "files": [
+            "app/config/config_composer.php"
+        ],
         "psr-4": {
-            "User\\TallerMecanicaFicticio\\": "app/"
+            "App\\":"app/"
         }
     },
     "authors": [

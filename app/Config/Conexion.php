@@ -1,5 +1,7 @@
 <?php
-
+namespace App\Config;
+use PDO;
+use PDOException;
 // $dataBase = mysqli_connect("localhost", "root", "", "tallermecanicoficticio");
 // if (!$dataBase) {
 //     die("Error de conexión: " . mysqli_connect_error());

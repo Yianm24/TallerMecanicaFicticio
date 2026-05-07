@@ -1,3 +1,4 @@
 <?php
+include "vendor/autoload.php";
 
-require 'app\controller\frontcontroller.php';
+require 'app\controller\Frontcontroller.php';

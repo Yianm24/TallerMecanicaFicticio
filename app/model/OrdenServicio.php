@@ -1,5 +1,7 @@
 <?php
-require_once 'base.php';
+namespace App\Model;
+
+//require_once 'base.php';
 class OrdenServicio extends Base
 {
 

@@ -1,6 +1,6 @@
 <?php
-
-require "base.php";
+namespace App\Model;
+//require "base.php";
 
 class Cliente extends Base
 {

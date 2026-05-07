@@ -1,6 +1,8 @@
 <?php
 
-require "app/config/conex.php";
+namespace App\Model;
+use App\Config\Conexion;
+//require "app/config/conex.php";
 //abstract class Base extends Conexion
 abstract class Base extends Conexion
 {
