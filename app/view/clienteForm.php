@@ -83,6 +83,7 @@
                 <th scope="col">Apellido</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Direccion</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -94,6 +95,13 @@
                     <td><?php echo $cliente["apellido"]; ?></td>
                     <td><?php echo $cliente["telefono"]; ?></td>
                     <td><?php echo $cliente["direccion"]; ?></td>
+                    <td>
+                        <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="delete_id" value="<?php echo $cliente['id']; ?>">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este cliente?');">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             <?php } ?>
             <!-- Se cierra el ciclo -->

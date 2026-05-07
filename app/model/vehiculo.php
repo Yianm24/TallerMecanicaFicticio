@@ -19,11 +19,13 @@ class Vehiculo extends Base
         $this->modelo = $modelo;
         $this->ano = $ano;
         $this->detalles = $detalles;
+        $this->estado = 1; // Asignar un valor predeterminado a estado, por ejemplo, 1 para activo
     }
 
-    public function getAllVehiculos() {
+    public function getAllVehiculos()
+    {
         try {
-            $consult = $this->getConnection()->prepare("SELECT * FROM vehiculo");
+            $consult = $this->getConnection()->prepare("SELECT * FROM vehiculo WHERE estado = 1");
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -47,7 +49,7 @@ class Vehiculo extends Base
     {
         try {
             // Preparar la consulta SQL (INSERT INTO vehiculo)
-            $query = "INSERT INTO vehiculo (placa,marca, modelo, ano, detalles) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO vehiculo (placa,marca, modelo, ano, detalles,estado) VALUES (?,?, ?, ?, ?, ?)";
 
             // Utiliza getConnection() heredado de Conexion para preparar la consulta
             $stmt = $this->getConnection()->prepare($query);
@@ -58,6 +60,7 @@ class Vehiculo extends Base
             $stmt->bindValue(3, $this->modelo);
             $stmt->bindValue(4, $this->ano);
             $stmt->bindValue(5, $this->detalles);
+            $stmt->bindValue(6, $this->estado);
 
             // Ejecutar la consulta
             $result = $stmt->execute();
@@ -66,6 +69,31 @@ class Vehiculo extends Base
         } catch (\PDOException $e) {
             // Manejo de errores por ejemplo, si un id de cliente ya está duplicado
             return "<script>alert('Error al registrar el vehículo: " . $e->getMessage() . "');</script>";
+        }
+    }
+
+    public function deleteVehiculo(string $placa)
+    {
+        $this->placa = $placa;
+
+        return $this->deleteVehiculoByPlaca();
+    }
+
+    private function deleteVehiculoByPlaca()
+    {
+        try {
+            // Preparar la consulta SQL
+            $query = "UPDATE `vehiculo` SET estado = 0 WHERE placa = ?";
+            $delete = $this->getConnection()->prepare($query);
+
+            // Vincular el parámetro
+            $delete->bindValue(1, $this->placa);
+            // Ejecutar la consulta
+            $delete->execute();
+
+            return "Vehículo eliminado exitosamente";
+        } catch (\PDOException $e) {
+            return "Error al eliminar el vehículo: " . $e->getMessage();
         }
     }
 }

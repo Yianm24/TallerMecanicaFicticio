@@ -13,12 +13,13 @@ class Repuesto extends Base
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->stock = $stock;
+        $this->estado = 1;
     }
 
     public function getAllRepuestos()
     {
         try {
-            $consult = $this->getConnection()->prepare("SELECT * FROM repuesto");
+            $consult = $this->getConnection()->prepare("SELECT * FROM repuesto WHERE estado = 1");
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -39,7 +40,7 @@ class Repuesto extends Base
     {
         try {
             // Preparar la consulta SQL (INSERT INTO repuesto)
-            $query = "INSERT INTO repuesto (nombre, precio, stock) VALUES (?, ?, ?)";
+            $query = "INSERT INTO repuesto (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)";
 
             // Utiliza getConnection() heredado de Conexion para preparar la consulta
             $stmt = $this->getConnection()->prepare($query);
@@ -49,6 +50,7 @@ class Repuesto extends Base
             $stmt->bindValue(1, $this->nombre);
             $stmt->bindValue(2, $this->precio);
             $stmt->bindValue(3, $this->stock);
+            $stmt->bindValue(4, $this->estado);
 
             // Ejecutar la consulta
             $result = $stmt->execute();
@@ -60,6 +62,31 @@ class Repuesto extends Base
         }
     }
 
+
+    public function deleteRepuesto(int $id)
+    {
+        $this->id = $id;
+
+        return $this->deleteRepuestoById();
+    }
+
+    private function deleteRepuestoById()
+    {
+        try {
+            // Preparar la consulta SQL
+            $query = "UPDATE `repuesto` SET estado = 0 WHERE id = ?";
+            $delete = $this->getConnection()->prepare($query);
+
+            // Vincular el parámetro
+            $delete->bindValue(1, $this->id);
+            // Ejecutar la consulta
+            $delete->execute();
+
+            return "Repuesto eliminado exitosamente";
+        } catch (\PDOException $e) {
+            return "Error al eliminar el repuesto: " . $e->getMessage();
+        }
+    }
     // public function reducirstock($cantidad)
     // {
     //     if ($this->stock >= $cantidad) {

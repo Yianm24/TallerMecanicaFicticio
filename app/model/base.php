@@ -11,6 +11,7 @@ abstract class Base extends Conexion
     public function __construct()
     {
         parent::__construct();
+        
         // $this->conexion = $this->getConnection();
     }
 

@@ -59,6 +59,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Stock</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -68,7 +69,16 @@
                     <td><?php echo $repuesto["nombre"]; ?></td>
                     <td><?php echo $repuesto["precio"]; ?></td>
                     <td><?php echo $repuesto["stock"]; ?></td>
+                    <td>
+                        <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="delete_id" value="<?php echo $repuesto['id']; ?>">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este repuesto?');">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
+                
+
             <?php } ?>
         </tbody>
     </table>

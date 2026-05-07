@@ -15,6 +15,7 @@ class OrdenServicio extends Base
         $this->fecha = $fecha;
         $this->detallescompra = $detallescompra;
         $this->totalcompra = $totalcompra;
+        $this->estado = 1;
     }
 
     public function calcularTotalCompra($preciosRepuesto, $preciosManoObra, $cantidadesRepuesto, $horasManoObra)
