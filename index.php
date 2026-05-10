@@ -1,4 +1,9 @@
 <?php
-include "vendor/autoload.php";
+// Iniciamos la sesión para poder acceder a $_SESSION en toda la app
+session_start();
 
-require 'app\controller\Frontcontroller.php';
+include "vendor/autoload.php";
+//require "app/controller/loginController.php";
+use App\Controller\FrontController;
+$frontController = new FrontController();
+//require "app/controller/Frontcontroller.php";

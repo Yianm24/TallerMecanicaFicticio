@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model;
 //require "base.php";
 class Repuesto extends Base
@@ -7,10 +8,10 @@ class Repuesto extends Base
     private $precio;
     private $stock;
 
-    public function __construct( $nombre = null, $precio = null, $stock = null)
+    public function __construct($nombre = null, $precio = null, $stock = null)
     {
         parent::__construct();
-        
+
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->stock = $stock;
@@ -24,7 +25,7 @@ class Repuesto extends Base
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            return []; // Retorna un array vacío en caso de error
+            return [];
         }
     }
 
@@ -40,25 +41,19 @@ class Repuesto extends Base
     private function registerRepuesto()
     {
         try {
-            // Preparar la consulta SQL (INSERT INTO repuesto)
             $query = "INSERT INTO repuesto (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)";
 
-            // Utiliza getConnection() heredado de Conexion para preparar la consulta
             $stmt = $this->getConnection()->prepare($query);
 
-            // Vincular los parámetros para evitar inyecciones SQL
-            
             $stmt->bindValue(1, $this->nombre);
             $stmt->bindValue(2, $this->precio);
             $stmt->bindValue(3, $this->stock);
             $stmt->bindValue(4, $this->estado);
 
-            // Ejecutar la consulta
             $result = $stmt->execute();
 
             return $result;
         } catch (\PDOException $e) {
-            // Manejo de errores por ejemplo, si un id de cliente ya está duplicado
             return "<script>alert('Error al registrar el repuesto: " . $e->getMessage() . "');</script>";
         }
     }
@@ -74,13 +69,10 @@ class Repuesto extends Base
     private function deleteRepuestoById()
     {
         try {
-            // Preparar la consulta SQL
             $query = "UPDATE `repuesto` SET estado = 0 WHERE id = ?";
             $delete = $this->getConnection()->prepare($query);
 
-            // Vincular el parámetro
             $delete->bindValue(1, $this->id);
-            // Ejecutar la consulta
             $delete->execute();
 
             return "Repuesto eliminado exitosamente";

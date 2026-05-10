@@ -25,12 +25,6 @@ class ComposerStaticInitb7a1ed921a1d9c647b86f49d7bce983d
     );
 
     public static $classMap = array (
-        'App\\Config\\Conexion' => __DIR__ . '/../..' . '/app/Config/Conexion.php',
-        'App\\Model\\Base' => __DIR__ . '/../..' . '/app/Model/Base.php',
-        'App\\Model\\Cliente' => __DIR__ . '/../..' . '/app/Model/Cliente.php',
-        'App\\Model\\OrdenServicio' => __DIR__ . '/../..' . '/app/Model/OrdenServicio.php',
-        'App\\Model\\Repuesto' => __DIR__ . '/../..' . '/app/Model/Repuesto.php',
-        'App\\Model\\Vehiculo' => __DIR__ . '/../..' . '/app/Model/Vehiculo.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

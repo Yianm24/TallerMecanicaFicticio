@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Controller;
-use App\Model\Cliente;
 
-//include "app/model/cliente.php";
+use App\Model\Cliente;
 
 $cliente = new Cliente();
 
-// Comprobamos si la petición es POST (cuando el usuario le da click a Enviar)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Verificamos si la petición es para eliminar (action = delete)
     if (isset($_POST['action']) && $_POST['action'] === 'delete') {
         if (!empty($_POST['delete_id'])) {
             $result_delete = $cliente->deleteCliente($_POST['delete_id']);
@@ -28,4 +25,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 $result = $cliente->getAllClientes();
 
-include "app/view/clienteForm.php";
+include "app/view/clientes.php";
