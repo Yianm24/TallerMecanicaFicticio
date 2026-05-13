@@ -26,7 +26,7 @@ class Vehiculo extends Base
     public function getAllVehiculos()
     {
         try {
-            $consult = $this->getConnection()->prepare("SELECT * FROM vehiculo WHERE estado = 1");
+            $consult = $this->conexion->prepare("SELECT * FROM vehiculo WHERE estado = 1");
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -52,8 +52,7 @@ class Vehiculo extends Base
             // Preparar la consulta SQL (INSERT INTO vehiculo)
             $query = "INSERT INTO vehiculo (placa,marca, modelo, ano, detalles,estado) VALUES (?,?, ?, ?, ?, ?)";
 
-            // Utiliza getConnection() heredado de Conexion para preparar la consulta
-            $stmt = $this->getConnection()->prepare($query);
+            $stmt = $this->conexion->prepare($query);
 
             // Vincular los parámetros para evitar inyecciones SQL
             $stmt->bindValue(1, $this->placa);
@@ -85,7 +84,7 @@ class Vehiculo extends Base
         try {
             // Preparar la consulta SQL
             $query = "UPDATE `vehiculo` SET estado = 0 WHERE placa = ?";
-            $delete = $this->getConnection()->prepare($query);
+            $delete = $this->conexion->prepare($query);
 
             // Vincular el parámetro
             $delete->bindValue(1, $this->placa);

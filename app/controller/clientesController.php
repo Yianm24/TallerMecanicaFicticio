@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Model\Cliente;
 
 $cliente = new Cliente();

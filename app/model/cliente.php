@@ -28,7 +28,7 @@ class Cliente extends Base
     public function getAllClientes()
     {
         try {
-            $consult = $this->getConnection()->prepare("SELECT * FROM cliente WHERE estado = 1");
+            $consult = $this->conexion->prepare("SELECT * FROM cliente WHERE estado = 1");
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -52,7 +52,7 @@ class Cliente extends Base
         try {
             $query = "INSERT INTO cliente (id, nombre, apellido, telefono, direccion, estado) VALUES (?, ?, ?, ?, ?, ?)";
 
-            $stmt = $this->getConnection()->prepare($query);
+            $stmt = $this->conexion->prepare($query);
 
             $stmt->bindValue(1, $this->id);
             $stmt->bindValue(2, $this->nombre);
@@ -81,7 +81,7 @@ class Cliente extends Base
     {
         try {
             $query = "UPDATE `cliente` SET estado = 0 WHERE id = ?";
-            $delete = $this->getConnection()->prepare($query);
+            $delete = $this->conexion->prepare($query);
 
             $delete->bindValue(1, $this->id);
             $delete->execute();

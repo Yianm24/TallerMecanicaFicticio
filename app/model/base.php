@@ -7,13 +7,13 @@ abstract class Base extends Conexion
 {
     protected $id;
     protected $estado;
-    private $conexion;
+    protected $conexion;
 
     public function __construct()
     {
         parent::__construct();
         
-   // $this->conexion = $this->getConnection();
+        $this->conexion = $this->getConnection();
     }
 
 

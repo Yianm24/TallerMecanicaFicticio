@@ -121,7 +121,7 @@ include "app/view/head/head.php";
               </div>
 
               <div class="pagination">
-                <span>Mostrando 5 de 1432 repuestos</span>
+                <span>Mostrando <?php echo count($result); ?> de <?php echo count($result); ?> repuestos</span>
                 <div class="pager">
                   <button class="pager-btn" type="button" disabled>Anterior</button>
                   <button class="pager-btn" type="button">Siguiente</button>

@@ -1,15 +1,6 @@
 <!doctype html>
 <html lang="es">
 
-<!-- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Control - Las Roscas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
-</head> -->
 <?php
 include "app/view/head/head.php";
 ?>
@@ -130,8 +121,9 @@ include "app/view/head/head.php";
               <table class="table">
                 <thead>
                   <tr>
+                    <th>Cédula</th>
                     <th>Nombre</th>
-                    <th>Apellido</th>
+                    <!-- <th>Apellido</th> -->
                     <th>Contacto</th>
                     <th>Dirección</th>
                     <th class="td-right">Acciones</th>
@@ -142,18 +134,18 @@ include "app/view/head/head.php";
                   <!-- Se realiza un bucle (foreach) para mostrar los usuarios -->
                   <?php foreach ($result as $cliente) { ?>
                     <tr>
+                      <td class="mono"><?php echo $cliente["id"]; ?></td>
                       <td>
                         <div class="cell-flex">
                           <div class="avatar-dot"><?php echo substr($cliente["nombre"], 0, 1); ?></div>
-                          <div class="td-name"><?php echo $cliente["nombre"]; ?></div>
+                          <div class="td-name"><?php echo $cliente["nombre"] . " " . $cliente["apellido"]; ?></div>
                         </div>
                       </td>
-                      <td>
+                      <!-- <td>
                         <div class="td-name"><?php echo $cliente["apellido"]; ?></div>
-                      </td>
+                      </td> -->
                       <td>
                         <div class="td-phone"><?php echo $cliente["telefono"]; ?></div>
-                        <div class="td-doc">C.I: <?php echo $cliente["id"]; ?></div>
                       </td>
                       <td class="td-address"><?php echo $cliente["direccion"]; ?></td>
                       <td class="td-right">
@@ -185,7 +177,7 @@ include "app/view/head/head.php";
             </div>
 
             <div class="pagination">
-              <span>Mostrando 4 de 4 clientes</span>
+              <span>Mostrando <?php echo count($result); ?> de <?php echo count($result); ?> clientes</span>
               <div class="pager">
                 <button class="pager-btn" type="button" disabled>Anterior</button>
                 <button class="pager-btn" type="button" disabled>Siguiente</button>

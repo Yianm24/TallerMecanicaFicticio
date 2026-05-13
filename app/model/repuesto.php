@@ -21,7 +21,7 @@ class Repuesto extends Base
     public function getAllRepuestos()
     {
         try {
-            $consult = $this->getConnection()->prepare("SELECT * FROM repuesto WHERE estado = 1");
+            $consult = $this->conexion->prepare("SELECT * FROM repuesto WHERE estado = 1");
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
@@ -43,7 +43,7 @@ class Repuesto extends Base
         try {
             $query = "INSERT INTO repuesto (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)";
 
-            $stmt = $this->getConnection()->prepare($query);
+            $stmt = $this->conexion->prepare($query);
 
             $stmt->bindValue(1, $this->nombre);
             $stmt->bindValue(2, $this->precio);
@@ -70,7 +70,7 @@ class Repuesto extends Base
     {
         try {
             $query = "UPDATE `repuesto` SET estado = 0 WHERE id = ?";
-            $delete = $this->getConnection()->prepare($query);
+            $delete = $this->conexion->prepare($query);
 
             $delete->bindValue(1, $this->id);
             $delete->execute();
