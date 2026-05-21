@@ -15,24 +15,22 @@ class User extends Base
         $this->password = $password;
     }
 
-    /**
-     * Verifica las credenciales del usuario contra la base de datos
-     */
+    
     public function authenticate($nombre, $password)
     {
         try {
-            // Consulta SQL buscando coincidencias para el nombre y el password.
+          
             $query = "SELECT * FROM user WHERE nombre = ? AND password = ?";
             
             $stmt = $this->conexion->prepare($query);
             
-            // Vinculamos los valores recibidos para evitar inyección SQL
+           
             $stmt->bindValue(1, $nombre);
             $stmt->bindValue(2, $password);
             
             $stmt->execute();
             
-            // Obtenemos el registro. Si existe coincidencia, fetch() devolverá el array, sino false.
+          
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             
             return $user ? true : false;

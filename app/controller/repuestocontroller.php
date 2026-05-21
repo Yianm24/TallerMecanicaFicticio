@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Model\Repuesto;
 
-//include "app/model/repuesto.php";
-
 $repuesto = new Repuesto();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

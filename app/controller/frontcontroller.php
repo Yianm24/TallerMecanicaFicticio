@@ -1,51 +1,50 @@
 <?php
 
-    namespace App\Controller;
-    class FrontController {
+namespace App\Controller;
 
-        // Definicion de atributos que serán constantes
-        private $dir;
-        private $controller;        
-        private $url;
+class FrontController
+{
 
-        public function __construct() {
-            
+    // Definicion de atributos que serán constantes
+    private $dir;
+    private $controller;
+    private $url;
+
+    public function __construct()
+    {
+
         // Si existe y no está vacía una request con el nombre de url
 
-            if (isset($_REQUEST["url"])) {
+        if (isset($_REQUEST["url"])) {
 
-                //se asigna el valor de la request a la variable url
-                $this->url = $_REQUEST["url"];
+            //se asigna el valor de la request a la variable url
+            $this->url = $_REQUEST["url"];
 
-                //directorio donde se encuentran los controladores
-                $this->dir = 'app/controller/';
+            //directorio donde se encuentran los controladores
+            $this->dir = 'app/controller/';
 
-                //concatenación del nombre del controlador con el nombre de la clase
-                $this->controller = 'Controller.php';
+            //concatenación del nombre del controlador con el nombre de la clase
+            $this->controller = 'Controller.php';
 
-                //se ejecuta el método getURL que se encarga de cargar el controlador correspondiente
-                $this->getURL();
-
-            }else {
-                die("<script>location='?url=dashboard'</script>");
-            }
+            //se ejecuta el método getURL que se encarga de cargar el controlador correspondiente
+            $this->getURL();
+        } else {
+            die("<script>location='?url=dashboard'</script>");
         }
-
-        private function getURL() {
-
-            //si existe el controlador en la carpeta de controladores
-            
-            if(file_exists($this->dir.$this->url.$this->controller)) {
-                
-                //se llama al controlador correspondiente
-                require_once($this->dir.$this->url.$this->controller);
-            
-            } else {
-
-                echo "<script>location='?url=dashboard'</script>";
-            }
-        }
-
     }
 
-?>
+    private function getURL()
+    {
+
+        //si existe el controlador en la carpeta de controladores
+
+        if (file_exists($this->dir . $this->url . $this->controller)) {
+
+            //se llama al controlador correspondiente
+            require_once($this->dir . $this->url . $this->controller);
+        } else {
+
+            echo "<script>location='?url=dashboard'</script>";
+        }
+    }
+}

@@ -33,14 +33,15 @@ include "app/view/head/head.php";
               </h2>
             </div>
             <div class="card__body">
-              <form class="form" method="post">
+              <form class="form" method="post" id="formCliente">
+                <input type="hidden" name="action" id="actionCliente" value="<?php echo $edit_data ? 'update' : ''; ?>">
                 <div>
                   <label class="label" for="c-name">Nombre</label>
-                  <input id="c-name" class="input" type="text" aria-label="Nombre" name="nombre" placeholder="Nombre:" />
+                  <input id="c-name" class="input" type="text" aria-label="Nombre" name="nombre" placeholder="Nombre:" value="<?php echo $edit_data ? htmlspecialchars($edit_data['nombre'], ENT_QUOTES) : ''; ?>" />
                 </div>
                 <div>
                   <label class="label" for="c-lastname">Apellido</label>
-                  <input id="c-lastname" class="input" type="text" aria-label="Apellido" name="apellido" placeholder="Apellido:" />
+                  <input id="c-lastname" class="input" type="text" aria-label="Apellido" name="apellido" placeholder="Apellido:" value="<?php echo $edit_data ? htmlspecialchars($edit_data['apellido'], ENT_QUOTES) : ''; ?>" />
                 </div>
                 <div>
                   <label class="label" for="c-ci">Cédula</label>
@@ -59,7 +60,7 @@ include "app/view/head/head.php";
                           stroke-linejoin="round" />
                       </svg>
                     </span>
-                    <input id="c-ci" class="input input--icon" type="text" name="id" placeholder="Cedula del cliente:" aria-label="Cedula" />
+                    <input id="c-ci" class="input input--icon" type="text" name="id" placeholder="Cedula del cliente:" aria-label="Cedula" value="<?php echo $edit_data ? htmlspecialchars($edit_data['id'], ENT_QUOTES) : ''; ?>" <?php echo $edit_data ? 'readonly' : ''; ?> />
                   </div>
                 </div>
                 <div>
@@ -75,7 +76,7 @@ include "app/view/head/head.php";
                           stroke-linejoin="round" />
                       </svg>
                     </span>
-                    <input id="c-phone" class="input input--icon" type="tel" name="telefono" placeholder="Numero Telefonico:" aria-label="Número de teléfono" />
+                    <input id="c-phone" class="input input--icon" type="tel" name="telefono" placeholder="Numero Telefonico:" aria-label="Número de teléfono" value="<?php echo $edit_data ? htmlspecialchars($edit_data['telefono'], ENT_QUOTES) : ''; ?>" />
                   </div>
                 </div>
                 <div>
@@ -92,11 +93,14 @@ include "app/view/head/head.php";
                         <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" />
                       </svg>
                     </span>
-                    <input id="c-address" class="input input--icon" type="text" name="direccion" placeholder="Direccion:" aria-label="Direccion del cliente" />
+                    <input id="c-address" class="input input--icon" type="text" name="direccion" placeholder="Direccion:" aria-label="Direccion del cliente" value="<?php echo $edit_data ? htmlspecialchars($edit_data['direccion'], ENT_QUOTES) : ''; ?>" />
                   </div>
                 </div>
                 <div class="form-actions">
-                  <button class="btn-full" type="submit">Guardar Cliente</button>
+                  <button class="btn-full" type="submit" id="btnSubmitCliente"><?php echo $edit_data ? 'Actualizar Cliente' : 'Guardar Cliente'; ?></button>
+                  <?php if ($edit_data): ?>
+                    <a href="?url=clientes" class="btn btn--muted" style="text-align: center; text-decoration: none; display: block;">Cancelar Edición</a>
+                  <?php endif; ?>
                 </div>
               </form>
             </div>
@@ -123,7 +127,6 @@ include "app/view/head/head.php";
                   <tr>
                     <th>Cédula</th>
                     <th>Nombre</th>
-                    <!-- <th>Apellido</th> -->
                     <th>Contacto</th>
                     <th>Dirección</th>
                     <th class="td-right">Acciones</th>
@@ -140,22 +143,19 @@ include "app/view/head/head.php";
                           <div class="avatar-dot"><?php echo substr($cliente["nombre"], 0, 1); ?></div>
                           <div class="td-name"><?php echo $cliente["nombre"] . " " . $cliente["apellido"]; ?></div>
                         </div>
-                      </td>
-                      <!-- <td>
-                        <div class="td-name"><?php echo $cliente["apellido"]; ?></div>
-                      </td> -->
+                      </td> 
                       <td>
                         <div class="td-phone"><?php echo $cliente["telefono"]; ?></div>
                       </td>
                       <td class="td-address"><?php echo $cliente["direccion"]; ?></td>
                       <td class="td-right">
                         <div class="actions">
-                          <button class="icon-action" type="button" title="Editar" aria-label="Editar">
+                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=clientes&edit_id=<?php echo $cliente['id']; ?>">
                             <svg viewBox="0 0 24 24" fill="none">
                               <path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                             </svg>
-                          </button>
+                          </a>
                           <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="delete_id" value="<?php echo $cliente['id']; ?>">
@@ -205,6 +205,7 @@ include "app/view/head/head.php";
       </footer>
     </main>
   </div>
+
 </body>
 
 </html>

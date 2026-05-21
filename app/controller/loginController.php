@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Model\User;
 
-//include "app/model/vehiculo.php";
-
 $usuario = new User();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

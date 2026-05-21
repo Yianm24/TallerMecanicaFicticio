@@ -1,6 +1,7 @@
 <?php
+
 namespace App\Model;
-//require "base.php";
+
 class Vehiculo extends Base
 {
     private $placa;
@@ -20,7 +21,7 @@ class Vehiculo extends Base
         $this->modelo = $modelo;
         $this->ano = $ano;
         $this->detalles = $detalles;
-        $this->estado = 1; // Asignar un valor predeterminado a estado, por ejemplo, 1 para activo
+        $this->estado = 1;
     }
 
     public function getAllVehiculos()
@@ -30,7 +31,7 @@ class Vehiculo extends Base
             $consult->execute();
             return $consult->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
-            return []; // Retorna un array vacío en caso de error
+            return [];
         }
     }
 
@@ -49,12 +50,11 @@ class Vehiculo extends Base
     private function registerVehiculo()
     {
         try {
-            // Preparar la consulta SQL (INSERT INTO vehiculo)
+
             $query = "INSERT INTO vehiculo (placa,marca, modelo, ano, detalles,estado) VALUES (?,?, ?, ?, ?, ?)";
 
             $stmt = $this->conexion->prepare($query);
 
-            // Vincular los parámetros para evitar inyecciones SQL
             $stmt->bindValue(1, $this->placa);
             $stmt->bindValue(2, $this->marca);
             $stmt->bindValue(3, $this->modelo);
@@ -67,7 +67,6 @@ class Vehiculo extends Base
 
             return $result;
         } catch (\PDOException $e) {
-            // Manejo de errores por ejemplo, si un id de cliente ya está duplicado
             return "<script>alert('Error al registrar el vehículo: " . $e->getMessage() . "');</script>";
         }
     }

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Model;
-//require "base.php";
 
 class Cliente extends Base
 {
@@ -69,6 +68,36 @@ class Cliente extends Base
         }
     }
 
+    public function updateCliente($id, $nombre, $apellido, $telefono, $direccion)
+    {
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->telefono = $telefono;
+        $this->direccion = $direccion;
+
+        return $this->updateClienteById();
+    }
+
+    private function updateClienteById()
+    {
+        try {
+            $query = "UPDATE `cliente` SET nombre = ?, apellido = ?, telefono = ?, direccion = ? WHERE id = ?";
+            $update = $this->conexion->prepare($query);
+
+            $update->bindValue(1, $this->nombre);
+            $update->bindValue(2, $this->apellido);
+            $update->bindValue(3, $this->telefono);
+            $update->bindValue(4, $this->direccion);
+            $update->bindValue(5, $this->id);
+            
+            $update->execute();
+
+            return "Cliente actualizado exitosamente";
+        } catch (\PDOException $e) {
+            return "Error al actualizar el cliente: " . $e->getMessage();
+        }
+    }
 
     public function deleteCliente(int $id)
     {
