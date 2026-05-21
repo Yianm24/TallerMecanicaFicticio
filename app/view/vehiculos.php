@@ -31,7 +31,8 @@ include "app/view/head/head.php";
               </h2>
             </div>
             <div class="card__body">
-              <form class="form">
+              <form class="form" method="post" id="formVehiculo">
+                <input type="hidden" name="action" id="actionVehiculo" value="<?php echo $edit_data ? 'update' : ''; ?>">
                 <div>
                   <label class="label" for="v-plate">Matrícula / Placa</label>
                   <div class="control">
@@ -42,17 +43,17 @@ include "app/view/head/head.php";
                         <path d="M7 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                       </svg>
                     </span>
-                    <input id="v-plate" class="input input--icon input--uppercase" type="text" name="placa" placeholder="Ingrese la placa del vehículo:" aria-label="Placa" />
+                    <input id="v-plate" class="input input--icon input--uppercase" type="text" name="placa" placeholder="Ingrese la placa del vehículo:"  value="<?php echo $edit_data ? htmlspecialchars($edit_data['placa'], ENT_QUOTES) : ''; ?>"aria-label="Placa" />
                   </div>
                 </div>
                 <div class="grid-2">
                   <div>
                     <label class="label" for="v-brand">Marca</label>
-                    <input id="v-brand" class="input" type="text" name="marca" placeholder="Ej. Toyota" />
+                    <input id="v-brand" class="input" type="text" name="marca" placeholder="Ej. Toyota" value="<?php echo $edit_data ? htmlspecialchars($edit_data['marca'], ENT_QUOTES) : ''; ?>" />
                   </div>
                   <div>
                     <label class="label" for="v-model">Modelo</label>
-                    <input id="v-model" class="input" type="text" name="modelo" placeholder="Ej. Corolla" />
+                    <input id="v-model" class="input" type="text" name="modelo" placeholder="Ej. Corolla" value="<?php echo $edit_data ? htmlspecialchars($edit_data['modelo'], ENT_QUOTES) : ''; ?>" />
                   </div>
                 </div>
                 <div class="grid-2">
@@ -71,7 +72,7 @@ include "app/view/head/head.php";
                         <?php
                         $anioActual = date("Y");
                         for ($i = $anioActual; $i >= 1950; $i--) {
-                          echo "<option value='$i'>$i</option>";
+                          echo "<option value='$i' " . ($edit_data && $edit_data['ano'] == $i ? 'selected' : '') . ">$i</option>";
                         }
                         ?>
                       </select>
@@ -79,11 +80,14 @@ include "app/view/head/head.php";
                   </div>
                   <div>
                     <label class="label" for="v-details">Detalles</label>
-                    <input id="v-details" class="input" type="text" name="detalles" placeholder="Ej. Observaciones, color..." />
+                    <input id="v-details" class="input" type="text" name="detalles" placeholder="Ej. Observaciones, color..." value="<?php echo $edit_data ? htmlspecialchars($edit_data['detalles'], ENT_QUOTES) : ''; ?>" />
                   </div>
                 </div>
                 <div class="form-actions">
-                  <button class="btn-full" type="button">Guardar Vehículo</button>
+                  <button class="btn-full" type="submit" id="btnSubmitVehiculo"><?php echo $edit_data ? 'Actualizar Vehículo' : 'Guardar Vehículo'; ?></button>
+                  <?php if ($edit_data): ?>
+                    <a href="?url=vehiculo" class="btn btn--muted" style="text-align: center; text-decoration: none; display: block;">Cancelar Edición</a>
+                  <?php endif; ?>
                 </div>
               </form>
             </div>
@@ -135,12 +139,12 @@ include "app/view/head/head.php";
                       <td><?php echo $vehiculo["detalles"]; ?></td>
                       <td class="td-right">
                         <div class="actions">
-                          <button class="icon-action" type="button" title="Editar" aria-label="Editar">
+                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=vehiculo&edit_placa=<?php echo $vehiculo['placa']; ?>">
                             <svg viewBox="0 0 24 24" fill="none">
                               <path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
                             </svg>
-                          </button>
+                          </a>
                           <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="delete_id" value="<?php echo $vehiculo['placa']; ?>">

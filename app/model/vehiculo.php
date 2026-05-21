@@ -71,6 +71,38 @@ class Vehiculo extends Base
         }
     }
 
+    public function updateVehiculo($placa, $marca, $modelo, $ano, $detalles)
+    {
+        $this->placa = $placa;
+        $this->marca = $marca;
+        $this->modelo = $modelo;
+        $this->ano = $ano;
+        $this->detalles = $detalles;
+
+        return $this->updateVehiculoByPlaca();
+    }
+
+    private function updateVehiculoByPlaca()
+    {
+        try {
+            $query = "UPDATE `vehiculo` SET marca = ?, modelo = ?, ano = ?, detalles = ? WHERE placa = ?";
+            $update = $this->conexion->prepare($query);
+
+
+            $update->bindValue(1, $this->marca);
+            $update->bindValue(2, $this->modelo);
+            $update->bindValue(3, $this->ano);
+            $update->bindValue(4, $this->detalles);
+            $update->bindValue(5, $this->placa);
+
+            $update->execute();
+
+            return "Cliente actualizado exitosamente";
+        } catch (\PDOException $e) {
+            return "Error al actualizar el cliente: " . $e->getMessage();
+        }
+    }
+
     public function deleteVehiculo(string $placa)
     {
         $this->placa = $placa;
