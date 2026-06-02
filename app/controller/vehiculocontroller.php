@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif (isset($_POST['action']) && $_POST['action'] === 'update') {
         // Petición para actualizar un vehiculo
         if (!empty($_POST['placa']) && !empty($_POST['marca']) && !empty($_POST['modelo']) && !empty($_POST['ano']) && !empty($_POST['detalles'])) {
-            $result = $vehiculo->updateVehiculo($_POST['placa'], $_POST['marca'], $_POST['modelo'], $_POST['ano'], $_POST['detalles']);
+            $result = $vehiculo->updateVehiculo($_POST['cod_vehiculo'], $_POST['placa'], $_POST['marca'], $_POST['modelo'], $_POST['ano'], $_POST['detalles']);
             echo "<script>alert('Vehículo actualizado correctamente'); location.href='?url=vehiculo';</script>";
         } else {
             echo "<script>alert('Falta uno o varios datos por ingresar para la actualización');</script>";
@@ -37,9 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $result = $vehiculo->getAllVehiculos();
 
 $edit_data = null;
-if (isset($_GET['edit_placa'])) {
+if (isset($_GET['edit_vehiculo'])) {
     foreach ($result as $c) {
-        if ($c['placa'] == $_GET['edit_placa']) {
+        if ($c['cod_vehiculo'] == $_GET['edit_vehiculo']) {
             $edit_data = $c;
             break;
         }

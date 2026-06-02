@@ -109,6 +109,7 @@ include "app/view/head/head.php";
               <table class="table table--vehicles">
                 <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Placa</th>
                     <th>Marca</th>
                     <th>Modelo</th>
@@ -121,6 +122,7 @@ include "app/view/head/head.php";
                   <!-- Se realiza un bucle (foreach) para mostrar los vehículos -->
                   <?php foreach ($result as $vehiculo) { ?>
                     <tr>
+                      <td><?php echo $vehiculo["cod_vehiculo"]; ?></td>
                       <td>
                         <div class="cell-flex">
                           <div class="vehicle-icon-wrap">
@@ -139,7 +141,7 @@ include "app/view/head/head.php";
                       <td><?php echo $vehiculo["detalles"]; ?></td>
                       <td class="td-right">
                         <div class="actions">
-                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=vehiculo&edit_placa=<?php echo $vehiculo['placa']; ?>">
+                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=vehiculo&edit_vehiculo=<?php echo $vehiculo['cod_vehiculo']; ?>">
                             <svg viewBox="0 0 24 24" fill="none">
                               <path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
