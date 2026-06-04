@@ -7,14 +7,18 @@ class Repuesto extends Base
     private $nombre;
     private $precio;
     private $stock;
+    private $marca;
 
-    public function __construct($nombre = null, $precio = null, $stock = null)
+    public function __construct($id = null, $nombre = null, $precio = null, $stock = null, $marca = null)
     {
         parent::__construct();
-
+        if ($id !== null) {
+            $this->id = $id;
+        }
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->stock = $stock;
+        $this->marca = $marca;
         $this->estado = 1;
     }
 
@@ -29,11 +33,12 @@ class Repuesto extends Base
         }
     }
 
-    public function addRepuesto($nombre, $precio, $stock)
+    public function addRepuesto($nombre, $marca, $precio, $stock)
     {
         $this->nombre = $nombre;
         $this->precio = $precio;
         $this->stock = $stock;
+        $this->marca = $marca;
 
         return $this->registerRepuesto();
     }
@@ -41,14 +46,15 @@ class Repuesto extends Base
     private function registerRepuesto()
     {
         try {
-            $query = "INSERT INTO repuesto (nombre, precio, stock, estado) VALUES (?, ?, ?, ?)";
+            $query = "INSERT INTO repuesto (nombre, marca, precio, stock, estado) VALUES (?, ?, ?, ?, ?)";
 
             $stmt = $this->conexion->prepare($query);
 
             $stmt->bindValue(1, $this->nombre);
-            $stmt->bindValue(2, $this->precio);
-            $stmt->bindValue(3, $this->stock);
-            $stmt->bindValue(4, $this->estado);
+            $stmt->bindValue(2, $this->marca);
+            $stmt->bindValue(3, $this->precio);
+            $stmt->bindValue(4, $this->stock);
+            $stmt->bindValue(5, $this->estado);
 
             $result = $stmt->execute();
 
@@ -58,6 +64,37 @@ class Repuesto extends Base
         }
     }
 
+    public function updateRepuesto($id, $nombre, $marca, $precio, $stock)
+    {
+        $this->id = $id;
+        $this->nombre = $nombre;
+        $this->marca = $marca;
+        $this->precio = $precio;
+        $this->stock = $stock;
+
+        return $this->updateRepuestoById();
+    }
+
+    private function updateRepuestoById()
+    {
+        try {
+            $query = "UPDATE `repuesto` SET nombre = ?, marca = ?, precio = ?, stock = ? WHERE id = ?";
+            $update = $this->conexion->prepare($query);
+
+
+            $update->bindValue(1, $this->nombre);
+            $update->bindValue(2, $this->marca);
+            $update->bindValue(3, $this->precio);
+            $update->bindValue(4, $this->stock);
+            $update->bindValue(5, $this->id);
+
+            $update->execute();
+
+            return "Repuesto actualizado exitosamente";
+        } catch (\PDOException $e) {
+            return "Error al actualizar el repuesto: " . $e->getMessage();
+        }
+    }
 
     public function deleteRepuesto(int $id)
     {

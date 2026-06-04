@@ -28,24 +28,25 @@ include "app/view/head/head.php";
                 </h2>
               </div>
               <div class="card__body">
-                <form class="form">
+                <form class="form" method="post" action="?url=repuesto">
+                  <input type="hidden" name="action" id="actionRepuesto" value="<?php echo $edit_data ? 'update' : ''; ?>">
                   <div>
                     <label class="label" for="p-name">Nombre del Repuesto</label>
                     <div class="control">
                       <span class="control__icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
                       </span>
-                      <input id="p-name" class="input input--icon" type="text" name="nombre" placeholder="Ingrese el nombre del repuesto:" aria-label="Nombre repuesto" />
+                      <input id="p-name" class="input input--icon" type="text" name="nombre" placeholder="Ingrese el nombre del repuesto:" value="<?php echo $edit_data ? htmlspecialchars($edit_data['nombre'], ENT_QUOTES) : ''; ?>" aria-label="Nombre repuesto" />
                     </div>
                   </div>
                   <div>
                     <label class="label" for="p-brand">Marca</label>
-                    <input id="p-brand" class="input" type="text" name="marca" placeholder="Ej. Bosch" aria-label="Marca" />
+                    <input id="p-brand" class="input" type="text" name="marca" placeholder="Ej. Bosch" aria-label="Marca" value="<?php echo $edit_data ? htmlspecialchars($edit_data['marca'], ENT_QUOTES) : ''; ?>" />
                   </div>
                   <div class="grid-2">
                     <div>
                       <label class="label" for="p-stock">Cantidad Stock</label>
-                      <input id="p-stock" class="input" type="number" min="0" aria-label="Stock" name="stock" placeholder="Stock:" />
+                      <input id="p-stock" class="input" type="number" min="0" aria-label="Stock" name="stock" placeholder="Stock:" value="<?php echo $edit_data ? htmlspecialchars($edit_data['stock'], ENT_QUOTES) : ''; ?>" />
                     </div>
                     <div>
                       <label class="label" for="p-price">Precio Unitario</label>
@@ -53,12 +54,15 @@ include "app/view/head/head.php";
                         <span class="control__icon" aria-hidden="true">
                           <svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
                         </span>
-                        <input id="p-price" class="input input--icon" type="number" min="0" step="0.01" aria-label="Precio" name="precio" placeholder="Precio:" />
+                        <input id="p-price" class="input input--icon" type="number" min="0" step="0.01" aria-label="Precio" name="precio" placeholder="Precio:" value="<?php echo $edit_data ? htmlspecialchars($edit_data['precio'], ENT_QUOTES) : ''; ?>" />
                       </div>
                     </div>
                   </div>
                   <div class="form-actions">
-                    <button class="btn-full" type="submit">Añadir al Inventario</button>
+                    <button class="btn-full" type="submit"><?php echo $edit_data ? 'Actualizar Repuesto' : 'Guardar Repuesto'; ?></button>
+                    <?php if ($edit_data): ?>
+                    <a href="?url=repuesto" class="btn btn--muted" style="text-align: center; text-decoration: none; display: block;">Cancelar Edición</a>
+                  <?php endif; ?>
                   </div>
                 </form>
               </div>
@@ -99,12 +103,12 @@ include "app/view/head/head.php";
                       <td class="td-right td-price">$<?php echo $repuesto["precio"]; ?></td>
                       <td class="td-right">
                         <div class="actions">
-                          <button class="icon-action icon-action--success" type="button" title="Aumentar Stock (+1)" aria-label="Aumentar Stock">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-                          </button>
-                          <button class="icon-action" type="button" title="Editar" aria-label="Editar">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
-                          </button>
+                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=repuesto&edit_repuesto=<?php echo $repuesto['id']; ?>">
+                            <svg viewBox="0 0 24 24" fill="none">
+                              <path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                              <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                            </svg>
+                          </a>
                           <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="delete_id" value="<?php echo $repuesto['id']; ?>">
