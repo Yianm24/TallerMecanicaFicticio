@@ -149,7 +149,7 @@ include "app/view/head/head.php";
                           </a>
                           <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
                             <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="delete_id" value="<?php echo $vehiculo['placa']; ?>">
+                            <input type="hidden" name="delete_id" value="<?php echo $vehiculo['cod_vehiculo']; ?>">
                             <button type="submit" class="icon-action icon-action--danger" title="Eliminar" aria-label="Eliminar" onclick="return confirm('¿Seguro que deseas eliminar este vehículo?');">
                               <svg viewBox="0 0 24 24" fill="none">
                                 <path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />

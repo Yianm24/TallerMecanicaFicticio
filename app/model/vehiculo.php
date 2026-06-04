@@ -14,7 +14,10 @@ class Vehiculo extends Base
     public function __construct($id = null, $placa = null, $marca = null, $modelo = null, $ano = null, $detalles = null)
     {
         
-        parent::__construct($id);
+        parent::__construct();
+        if ($id !== null) {
+            $this->id = $id;
+        }
         if ($placa !== null) {
             $this->placa = $placa;
         }
@@ -54,17 +57,16 @@ class Vehiculo extends Base
     {
         try {
 
-            $query = "INSERT INTO vehiculo (id, placa, marca, modelo, ano, detalles, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $query = "INSERT INTO vehiculo (placa, marca, modelo, ano, detalles, estado) VALUES (?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->conexion->prepare($query);
 
-            $stmt->bindValue(1, $this->id);
-            $stmt->bindValue(2, $this->placa);
-            $stmt->bindValue(3, $this->marca);
-            $stmt->bindValue(4, $this->modelo);
-            $stmt->bindValue(5, $this->ano);
-            $stmt->bindValue(6, $this->detalles);
-            $stmt->bindValue(7, $this->estado);
+            $stmt->bindValue(1, $this->placa);
+            $stmt->bindValue(2, $this->marca);
+            $stmt->bindValue(3, $this->modelo);
+            $stmt->bindValue(4, $this->ano);
+            $stmt->bindValue(5, $this->detalles);
+            $stmt->bindValue(6, $this->estado);
 
             // Ejecutar la consulta
             $result = $stmt->execute();
@@ -90,7 +92,7 @@ class Vehiculo extends Base
     private function updateVehiculoById()
     {
         try {
-            $query = "UPDATE `vehiculo` SET placa = ?, marca = ?, modelo = ?, ano = ?, detalles = ? WHERE id = ?";
+            $query = "UPDATE `vehiculo` SET placa = ?, marca = ?, modelo = ?, ano = ?, detalles = ? WHERE cod_vehiculo = ?";
             $update = $this->conexion->prepare($query);
 
 
@@ -120,7 +122,7 @@ class Vehiculo extends Base
     {
         try {
             // Preparar la consulta SQL
-            $query = "UPDATE `vehiculo` SET estado = 0 WHERE id = ?";
+            $query = "UPDATE `vehiculo` SET estado = 0 WHERE cod_vehiculo = ?";
             $delete = $this->conexion->prepare($query);
 
             // Vincular el parámetro
