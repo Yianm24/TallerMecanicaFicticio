@@ -28,7 +28,7 @@ include "app/view/head/head.php";
                 </h2>
               </div>
               <div class="card__body">
-                <form class="form" method="post" action="?url=repuesto">
+                <form class="form" method="post" >
                   <input type="hidden" name="action" id="actionRepuesto" value="<?php echo $edit_data ? 'update' : ''; ?>">
                   <div>
                     <label class="label" for="p-name">Nombre del Repuesto</label>
@@ -98,7 +98,7 @@ include "app/view/head/head.php";
                         <div class="td-name"><?php echo $repuesto["nombre"]; ?></div>
                         <div class="mono td-sku">ID: <?php echo $repuesto["id"]; ?></div>
                       </td>
-                      <td class="td-brand"><?php echo isset($repuesto["marca"]) ? $repuesto["marca"] : '-'; ?></td>
+                      <td class="td-brand"><?php echo ($repuesto["marca"]) ? $repuesto["marca"] : '-'; ?></td>
                       <td class="td-center"><span class="badge badge--emerald badge--sm"><?php echo $repuesto["stock"]; ?> unds</span></td>
                       <td class="td-right td-price">$<?php echo $repuesto["precio"]; ?></td>
                       <td class="td-right">
@@ -111,7 +111,7 @@ include "app/view/head/head.php";
                           </a>
                           <form method="post" class="p-0 m-0 shadow-none border-0 bg-transparent" style="margin-bottom: 0;">
                             <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="delete_id" value="<?php echo $repuesto['id']; ?>">
+                            <input type="hidden" name="delete_id" value="<?php echo $repuesto["id"]; ?>">
                             <button type="submit" class="icon-action icon-action--danger" title="Eliminar" aria-label="Eliminar" onclick="return confirm('¿Seguro que deseas eliminar este repuesto?');">
                               <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M8 6V4h8v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
                             </button>

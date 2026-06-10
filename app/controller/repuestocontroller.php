@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif (isset($_POST['action']) && $_POST['action'] === 'update') {
         // Petición para actualizar un repuesto
         if (!empty($_GET['edit_repuesto']) && !empty($_POST['nombre']) && !empty($_POST['marca']) && !empty($_POST['precio']) && !empty($_POST['stock'])) {
+            //if (!empty($_POST['marca'])) {
             $result = $repuesto->updateRepuesto($_GET['edit_repuesto'], $_POST['nombre'], $_POST['marca'], $_POST['precio'], $_POST['stock']);
             echo "<script>alert('Repuesto actualizado correctamente'); location.href='?url=repuesto';</script>";
         } else {

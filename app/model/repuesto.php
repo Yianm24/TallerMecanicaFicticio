@@ -71,6 +71,8 @@ class Repuesto extends Base
         $this->marca = $marca;
         $this->precio = $precio;
         $this->stock = $stock;
+        
+        
 
         return $this->updateRepuestoById();
     }
