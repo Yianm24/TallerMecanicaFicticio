@@ -8,20 +8,28 @@ $usuario = new User();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Se cambia 'nombre' por 'username' para coincidir con el formulario de login.php
+    
     if (isset($_POST['username']) && isset($_POST['password'])) {
         
         // Evaluamos si el método authenticate() retorna true
-        if ($usuario->authenticate($_POST['username'], $_POST['password'])) {
+        $resultado = $usuario->getDatosUser($_POST['username'], $_POST['password']);
+        //echo $resultado;
+        if (is_array($resultado)) {
             
+        
             // Asignamos variables de sesión para identificar al usuario
-            $_SESSION['username'] = $_POST['username'];
-            $_SESSION['logged_in'] = true;
+            $_SESSION = [
+                'username' =>  $resultado['nombre'],
+                'rol' =>  $resultado['rol'],
+                'logged_in' => true
+            ];
+           
             
             echo "<script>alert('Usuario y contraseña correctos');</script>";
-            die("<script>location='?url=dashboard'</script>");
+            header('Location: ?url=dashboard');
+            exit();
         } else {
-            echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+            echo $resultado;
         }
         
     } else {

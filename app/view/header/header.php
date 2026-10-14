@@ -43,7 +43,7 @@
     </div>
 
     <div class="sidebar__mobile-title">Menú Principal</div>
-
+<?php  if (isset($_SESSION['username'])):?>
     <?php $paginaActual = basename($_SERVER['PHP_SELF']); ?>
     <nav class="nav">
         <a class="nav__item" href="?url=dashboard">
@@ -56,6 +56,7 @@
             </span>
             <span class="nav__label">Inicio</span>
         </a>
+        <?php if($_SESSION['rol'] === 'administrador'): ?>
         <a class="nav__item" href="?url=clientes">
             <span class="nav__icon" aria-hidden="true">
                 <!-- users -->
@@ -79,6 +80,7 @@
             </span>
             <span class="nav__label">Repuestos</span>
         </a>
+        <?php endif; ?>
         <a class="nav__item" href="?url=vehiculo">
             <span class="nav__icon" aria-hidden="true">
                 <!-- car -->
@@ -95,13 +97,12 @@
         </a>
        
     </nav>
-
     <div class="sidebar__footer">
         <div class="user">
-            <div class="user__avatar">AD</div>
+            <div class="user__avatar"><?php echo mb_substr($_SESSION['username'],0,1); ?></div>
             <div class="user__meta">
-                <div class="user__name">Admin Principal</div>
-                <div class="user__email">admin@lasroscas.com</div>
+                <div class="user__name"><?php echo $_SESSION['username']; ?></div>
+                <div class="user__email"><?php echo $_SESSION['rol']; ?></div>
             </div>
         </div>
 
@@ -119,3 +120,4 @@
         </a>
     </div>
 </aside>
+<?php endif; ?>

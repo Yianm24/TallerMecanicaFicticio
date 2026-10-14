@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-06-2026 a las 21:34:19
+-- Tiempo de generación: 14-10-2026 a las 22:23:01
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,7 +41,10 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id`, `nombre`, `apellido`, `telefono`, `direccion`, `estado`) VALUES
-(11111111, 'YANCARLOS DE JESUS', 'CAMACARO ALDANA', '04245188451', 'Prueba', 1);
+(789, 'YANCARLOS DE789', 'CAMACARO ALDANA', '890', 'YUYU', 1),
+(67890, 'juan', 'yN', '189832983', 'en su casa', 1),
+(111189, 'YAN', 'Perez', '0426098 ', 'en su casa', 1),
+(11111111, 'YANCARLOS DE JESUS', 'CAMACARO ALDANA', '04245188451', 'Prueba', 0);
 
 -- --------------------------------------------------------
 
@@ -64,7 +67,8 @@ CREATE TABLE `repuesto` (
 
 INSERT INTO `repuesto` (`id`, `nombre`, `marca`, `precio`, `stock`, `estado`) VALUES
 (11, 'llave', 'pedras', 8, 7, 0),
-(12, 'toto', 'bumbu', 90, 7, 1);
+(12, 'toto', 'bumbu', 90, 7, 0),
+(13, 'Motor', 'pedrito', 96, 67, 1);
 
 -- --------------------------------------------------------
 
@@ -75,6 +79,7 @@ INSERT INTO `repuesto` (`id`, `nombre`, `marca`, `precio`, `stock`, `estado`) VA
 CREATE TABLE `user` (
   `cod-user` int(11) NOT NULL,
   `nombre` varchar(20) NOT NULL,
+  `rol` enum('administrador','operador') NOT NULL DEFAULT 'operador',
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -82,8 +87,9 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`cod-user`, `nombre`, `password`) VALUES
-(1, 'maria', '7676');
+INSERT INTO `user` (`cod-user`, `nombre`, `rol`, `password`) VALUES
+(1, 'maria', 'operador', '7676'),
+(2, 'Yancarlos ', 'administrador', '123');
 
 -- --------------------------------------------------------
 
@@ -107,7 +113,9 @@ CREATE TABLE `vehiculo` (
 
 INSERT INTO `vehiculo` (`cod_vehiculo`, `placa`, `marca`, `modelo`, `ano`, `detalles`, `estado`) VALUES
 (1, '9876', 'jojoto', 'f45', 2022, 'JAJAJ se le metio una bujia por el trasversal', 1),
-(2, '4567', 'yoyo8', 'rrolla', 2009, 'fghgfh', 1);
+(2, '4567', 'yoyo8', 'rrolla', 2009, 'fghgfh', 1),
+(3, 'yuit123', 'toyota', 'Ford', 2020, 'JAJAJ se le metio una transversal', 1),
+(4, 'yuit123', 'yoyo8', '46', 2015, 'KOKO', 1);
 
 --
 -- Índices para tablas volcadas
@@ -145,19 +153,19 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `repuesto`
 --
 ALTER TABLE `repuesto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `cod-user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cod-user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `cod_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_vehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

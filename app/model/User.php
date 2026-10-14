@@ -7,16 +7,21 @@ class User extends Base
     private $nombre;
     private $password;
 
-    public function __construct($nombre = null, $password = null)
+    public function __construct()
     {
         parent::__construct();
-        
+    
+    }
+
+    public function getDatosUser($nombre = null, $password = null){
         $this->nombre = $nombre;
         $this->password = $password;
+
+        return $this->authenticate();
     }
 
     
-    public function authenticate($nombre, $password)
+    private function authenticate()
     {
         try {
           
@@ -25,18 +30,19 @@ class User extends Base
             $stmt = $this->conexion->prepare($query);
             
            
-            $stmt->bindValue(1, $nombre);
-            $stmt->bindValue(2, $password);
+            $stmt->bindValue(1, $this->nombre);
+            $stmt->bindValue(2, $this->password);
             
             $stmt->execute();
+            $fila = $stmt->rowCount();
             
           
             $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             
-            return $user ? true : false;
+            return ($fila === 1) ? $user : '<script>alert("Usuario o contraseña incorrectos")</script>';
             
         } catch (\PDOException $e) {
-            return false;
+            return '<script>alert("Error al autenticar usuario: '.$e->getMessage().'")</script>';
         }
     }
 }
