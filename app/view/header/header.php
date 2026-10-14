@@ -70,7 +70,7 @@
             </span>
             <span class="nav__label">Clientes</span>
         </a>
-        <a class="nav__item" href="?url=repuesto">
+        <a class="nav__item" href="?url=repuestos">
             <span class="nav__icon" aria-hidden="true">
                 <!-- wrench -->
                 <svg viewBox="0 0 24 24" fill="none">

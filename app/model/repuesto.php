@@ -6,10 +6,11 @@ class Repuesto extends Base
 {
     private $nombre;
     private $precio;
+    private $marca;
     private $stock;
     private $marca;
 
-    public function __construct($id = null, $nombre = null, $precio = null, $stock = null, $marca = null)
+    public function __construct($id = null, $nombre = null, $precio = null, $marca = null, $stock = null)
     {
         parent::__construct();
         if ($id !== null) {
@@ -17,8 +18,8 @@ class Repuesto extends Base
         }
         $this->nombre = $nombre;
         $this->precio = $precio;
-        $this->stock = $stock;
         $this->marca = $marca;
+        $this->stock = $stock;
         $this->estado = 1;
     }
 
@@ -33,10 +34,11 @@ class Repuesto extends Base
         }
     }
 
-    public function addRepuesto($nombre, $marca, $precio, $stock)
+    public function addRepuesto($nombre, $precio, $marca, $stock)
     {
         $this->nombre = $nombre;
         $this->precio = $precio;
+        $this->marca = $marca;
         $this->stock = $stock;
         $this->marca = $marca;
 
@@ -46,13 +48,13 @@ class Repuesto extends Base
     private function registerRepuesto()
     {
         try {
-            $query = "INSERT INTO repuesto (nombre, marca, precio, stock, estado) VALUES (?, ?, ?, ?, ?)";
+            $query = "INSERT INTO repuesto (nombre, precio, marca, stock, estado) VALUES (?, ?, ?, ?, ?)";
 
             $stmt = $this->conexion->prepare($query);
 
             $stmt->bindValue(1, $this->nombre);
-            $stmt->bindValue(2, $this->marca);
-            $stmt->bindValue(3, $this->precio);
+            $stmt->bindValue(2, $this->precio);
+            $stmt->bindValue(3, $this->marca);
             $stmt->bindValue(4, $this->stock);
             $stmt->bindValue(5, $this->estado);
 

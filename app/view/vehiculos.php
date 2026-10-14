@@ -32,7 +32,7 @@ include "app/view/head/head.php";
             </div>
             <div class="card__body">
               <form class="form" method="post" id="formVehiculo">
-                <input type="hidden" name="action" id="actionVehiculo" value="<?php echo $edit_data ? 'update' : ''; ?>">
+                <input type="hidden" id="inputCodVehiculo" name="cod-vehiculo" value="">
                 <div>
                   <label class="label" for="v-plate">Matrícula / Placa</label>
                   <div class="control">
@@ -43,17 +43,17 @@ include "app/view/head/head.php";
                         <path d="M7 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                       </svg>
                     </span>
-                    <input id="v-plate" class="input input--icon input--uppercase" type="text" name="placa" placeholder="Ingrese la placa del vehículo:"  value="<?php echo $edit_data ? htmlspecialchars($edit_data['placa'], ENT_QUOTES) : ''; ?>"aria-label="Placa" />
+                    <input class="input input--icon input--uppercase" type="text" id="inputPlaca" name="placa" placeholder="Ingrese la placa del vehículo:" value="" aria-label="Placa" />
                   </div>
                 </div>
                 <div class="grid-2">
                   <div>
                     <label class="label" for="v-brand">Marca</label>
-                    <input id="v-brand" class="input" type="text" name="marca" placeholder="Ej. Toyota" value="<?php echo $edit_data ? htmlspecialchars($edit_data['marca'], ENT_QUOTES) : ''; ?>" />
+                    <input id="inputMarca" class="input" type="text" name="marca" placeholder="Ej. Toyota" value="" />
                   </div>
                   <div>
                     <label class="label" for="v-model">Modelo</label>
-                    <input id="v-model" class="input" type="text" name="modelo" placeholder="Ej. Corolla" value="<?php echo $edit_data ? htmlspecialchars($edit_data['modelo'], ENT_QUOTES) : ''; ?>" />
+                    <input id="inputModelo" class="input" type="text" name="modelo" placeholder="Ej. Corolla" value="" />
                   </div>
                 </div>
                 <div class="grid-2">
@@ -67,7 +67,7 @@ include "app/view/head/head.php";
                           <path d="M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                         </svg>
                       </span>
-                      <select id="v-year" name="ano" class="select select--icon">
+                      <select id="selectAno" name="ano" class="select select--icon">
                         <option value="" disabled selected>Seleccionar año...</option>
                         <?php
                         $anioActual = date("Y");
@@ -80,14 +80,12 @@ include "app/view/head/head.php";
                   </div>
                   <div>
                     <label class="label" for="v-details">Detalles</label>
-                    <input id="v-details" class="input" type="text" name="detalles" placeholder="Ej. Observaciones, color..." value="<?php echo $edit_data ? htmlspecialchars($edit_data['detalles'], ENT_QUOTES) : ''; ?>" />
+                    <input id="inputDetalles" class="input" type="text" name="detalles" placeholder="Ej. Observaciones, color..." />
                   </div>
                 </div>
                 <div class="form-actions">
-                  <button class="btn-full" type="submit" id="btnSubmitVehiculo"><?php echo $edit_data ? 'Actualizar Vehículo' : 'Guardar Vehículo'; ?></button>
-                  <?php if ($edit_data): ?>
-                    <a href="?url=vehiculo" class="btn btn--muted" style="text-align: center; text-decoration: none; display: block;">Cancelar Edición</a>
-                  <?php endif; ?>
+                  <button id="btn-TipoSolicitud" class="btn-full" type="submit" name="TipoSolicitud" value="guardar">Guardar</button>
+                  <button id="btn-CancelarEdit" class="btn btn--muted" style="display:none">Cancelar Edición</button>
                 </div>
               </form>
             </div>
@@ -120,7 +118,7 @@ include "app/view/head/head.php";
                 </thead>
                 <tbody>
                   <!-- Se realiza un bucle (foreach) para mostrar los vehículos -->
-                  <?php foreach ($result as $vehiculo) { ?>
+                  <?php foreach ($registrosVehiculos as $vehiculo) { ?>
                     <tr>
                       <td><?php echo $vehiculo["cod_vehiculo"]; ?></td>
                       <td>
@@ -141,7 +139,7 @@ include "app/view/head/head.php";
                       <td><?php echo $vehiculo["detalles"]; ?></td>
                       <td class="td-right">
                         <div class="actions">
-                          <a class="icon-action" title="Editar" aria-label="Editar" href="?url=vehiculo&edit_vehiculo=<?php echo $vehiculo['cod_vehiculo']; ?>">
+                          <a class="icon-action" title="Editar" aria-label="Editar" onclick="editarRegistro('<?= $vehiculo['placa']; ?>','<?= $vehiculo['modelo']; ?>','<?= $vehiculo['marca']; ?>','<?= $vehiculo['detalles']; ?>','<?= $vehiculo['ano']; ?>','<?= $vehiculo['cod_vehiculo']; ?>')">
                             <svg viewBox="0 0 24 24" fill="none">
                               <path d="M12 20h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                               <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
@@ -165,14 +163,6 @@ include "app/view/head/head.php";
                 </tbody>
               </table>
             </div>
-
-            <div class="pagination">
-              <span>Mostrando <?php echo count($result); ?> de <?php echo count($result); ?> vehículos</span>
-              <div class="pager">
-                <button class="pager-btn" type="button" disabled>Anterior</button>
-                <button class="pager-btn" type="button">Siguiente</button>
-              </div>
-            </div>
           </article>
         </section>
       </div>
@@ -187,6 +177,8 @@ include "app/view/head/head.php";
       </footer>
     </main>
   </div>
+
+  <script src="assets/js/vehiculo.js"></script>
 </body>
 
 </html>
