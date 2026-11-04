@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2026 a las 22:23:01
+-- Tiempo de generación: 05-11-2026 a las 00:28:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cliente` (
-  `id` int(11) NOT NULL,
+  `cod_cliente` int(11) NOT NULL,
+  `cedula` int(9) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `telefono` varchar(15) NOT NULL,
@@ -40,11 +41,9 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id`, `nombre`, `apellido`, `telefono`, `direccion`, `estado`) VALUES
-(789, 'YANCARLOS DE789', 'CAMACARO ALDANA', '890', 'YUYU', 1),
-(67890, 'juan', 'yN', '189832983', 'en su casa', 1),
-(111189, 'YAN', 'Perez', '0426098 ', 'en su casa', 1),
-(11111111, 'YANCARLOS DE JESUS', 'CAMACARO ALDANA', '04245188451', 'Prueba', 0);
+INSERT INTO `cliente` (`cod_cliente`, `cedula`, `nombre`, `apellido`, `telefono`, `direccion`, `estado`) VALUES
+(1, 30324703, 'María Laura', 'Pérez', '04125452201', 'pueblo nuevo', 1),
+(2, 30353577, 'yancarlos', 'bello', '04245188451', 'el este de barquisimeto', 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +87,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`cod-user`, `nombre`, `rol`, `password`) VALUES
-(1, 'maria', 'operador', '7676'),
+(1, 'maria', 'administrador', '7676'),
 (2, 'Yancarlos ', 'administrador', '123');
 
 -- --------------------------------------------------------
@@ -125,7 +124,7 @@ INSERT INTO `vehiculo` (`cod_vehiculo`, `placa`, `marca`, `modelo`, `ano`, `deta
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`cod_cliente`);
 
 --
 -- Indices de la tabla `repuesto`
@@ -148,6 +147,12 @@ ALTER TABLE `vehiculo`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `cod_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `repuesto`
