@@ -29,7 +29,7 @@ include "app/view/head/head.php";
               </div>
               <div class="card__body">
                 <form class="form" method="post" >
-                  <input type="hidden" name="action" id="actionRepuesto" value="<?php echo $edit_data ? 'update' : ''; ?>">
+                  <input type="hidden" name="action" id="inputCodRepuesto" value="">
                   <div>
                     <label class="label" for="p-name">Nombre del Repuesto</label>
                     <div class="control">
@@ -59,10 +59,8 @@ include "app/view/head/head.php";
                     </div>
                   </div>
                   <div class="form-actions">
-                    <button class="btn-full" type="submit"><?php echo $edit_data ? 'Actualizar Repuesto' : 'Guardar Repuesto'; ?></button>
-                    <?php if ($edit_data): ?>
-                    <a href="?url=repuesto" class="btn btn--muted" style="text-align: center; text-decoration: none; display: block;">Cancelar Edición</a>
-                  <?php endif; ?>
+                    <button id="btn-TipoSolicitud" class="btn-full" type="submit" name="TipoSolicitud" value="guardar">Guardar</button>
+                  <button id="btn-CancelarEdit" class="btn btn--muted" style="display:none">Cancelar Edición</button>
                   </div>
                 </form>
               </div>

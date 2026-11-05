@@ -2,31 +2,21 @@
 
 namespace App\Model;
 
+use App\Traits\ValidadorTrait;
+
 class Vehiculo extends Base
 {
-    
+    use ValidadorTrait;
     private $placa;
     private $marca;
     private $modelo;
     private $ano;
     private $detalles;
 
-    public function __construct($id = null, $placa = null, $marca = null, $modelo = null, $ano = null, $detalles = null)
+    public function __construct()
     {
-        
-        parent::__construct();
-        if ($id !== null) {
-            $this->id = $id;
-        }
-        if ($placa !== null) {
-            $this->placa = $placa;
-        }
 
-        $this->marca = $marca;
-        $this->modelo = $modelo;
-        $this->ano = $ano;
-        $this->detalles = $detalles;
-        $this->estado = 1;
+        parent::__construct();
     }
 
     public function getAllVehiculos()
@@ -41,15 +31,19 @@ class Vehiculo extends Base
     }
 
 
-    public function addVehiculo($placa, $marca, $modelo, $ano, $detalles)
+    public function addVehiculo(array $campos)
     {
-        
-        $this->placa = $placa;
-        $this->marca = $marca;
-        $this->modelo = $modelo;
-        $this->ano = $ano;
-        $this->detalles = $detalles;
-
+        $procesoTrait = $this->validarPost($campos);
+        if (is_array($procesoTrait)) {
+            $this->placa = $procesoTrait['placa'];
+            $this->marca = $procesoTrait['marca'];
+            $this->modelo = $procesoTrait['modelo'];
+            $this->ano = $procesoTrait['ano'];
+            $this->detalles = $procesoTrait['detalles'];
+            $this->estado = 1;
+        } else {
+            return $procesoTrait;
+        }
         return $this->registerVehiculo();
     }
 
@@ -69,23 +63,27 @@ class Vehiculo extends Base
             $stmt->bindValue(6, $this->estado);
 
             // Ejecutar la consulta
-            $result = $stmt->execute();
+            $stmt->execute();
 
-            return $result;
+            return "Datos registrados correctamente";
         } catch (\PDOException $e) {
-            return "<script>alert('Error al registrar el vehículo: " . $e->getMessage() . "');</script>";
+            return "Error al registrar el vehículo: {$e->getMessage()}";
         }
     }
 
-    public function updateVehiculo($id, $placa, $marca, $modelo, $ano, $detalles)
+    public function updateVehiculo(array $campos)
     {
-        $this->id = $id;
-        $this->placa = $placa;
-        $this->marca = $marca;
-        $this->modelo = $modelo;
-        $this->ano = $ano;
-        $this->detalles = $detalles;
-
+        $procesoTrait = $this->validarPost($campos);
+        if (is_array($procesoTrait)) {
+            $this->id = $procesoTrait['cod-vehiculo'];
+            $this->placa = $procesoTrait['placa'];
+            $this->marca = $procesoTrait['marca'];
+            $this->modelo = $procesoTrait['modelo'];
+            $this->ano = $procesoTrait['ano'];
+            $this->detalles = $procesoTrait['detalles'];
+        } else {
+            return $procesoTrait;
+        }
         return $this->updateVehiculoById();
     }
 
@@ -107,14 +105,18 @@ class Vehiculo extends Base
 
             return "Vehículo actualizado exitosamente";
         } catch (\PDOException $e) {
-            return "Error al actualizar el vehículo: " . $e->getMessage();
+            return "Error al actualizar el vehículo: {$e->getMessage()}";
         }
     }
 
-    public function deleteVehiculo(int $id)
+    public function deleteVehiculo(array $campos)
     {
-        $this->id = $id;
-
+        $procesoTrait = $this->validarPost($campos);
+        if (is_array($procesoTrait)) {
+            $this->id = $procesoTrait['delete_id'];
+        } else {
+            return $procesoTrait;
+        }
         return $this->deleteVehiculoById();
     }
 
@@ -132,7 +134,7 @@ class Vehiculo extends Base
 
             return "Vehículo eliminado exitosamente";
         } catch (\PDOException $e) {
-            return "Error al eliminar el vehículo: " . $e->getMessage();
+            return "Error al eliminar el vehículo: {$e->getMessage()}";
         }
     }
 }

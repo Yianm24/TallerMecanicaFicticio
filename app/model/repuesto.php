@@ -8,7 +8,6 @@ class Repuesto extends Base
     private $precio;
     private $marca;
     private $stock;
-    private $marca;
 
     public function __construct($id = null, $nombre = null, $precio = null, $marca = null, $stock = null)
     {
