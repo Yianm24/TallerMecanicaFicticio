@@ -2,8 +2,12 @@
 
 namespace App\Model;
 
+use App\Traits\ValidadorTrait;
+
+
 class Cliente extends Base
 {
+    use ValidadorTrait;
     private $cod_cliente;
     private $cedula;
     private $nombre;
@@ -14,7 +18,6 @@ class Cliente extends Base
     public function __construct()
     {
         parent::__construct();
-
     }
 
     public function getAllClientes()
@@ -28,15 +31,24 @@ class Cliente extends Base
         }
     }
 
-    public function addCliente($cedula, $nombre, $apellido, $telefono, $direccion)
+    // public function addCliente($cedula, $nombre, $apellido, $telefono, $direccion)
+    public function addCliente(array $campos)
     {
-        
-        $this->cedula = $cedula;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->telefono = $telefono;
-        $this->direccion = $direccion;
-        $this->estado = 1;
+
+
+        $procesoTrait = $this->validarPost($campos);
+
+        if (is_array($procesoTrait)) {
+            $this->cedula = $procesoTrait['cedula'];
+            $this->nombre = $procesoTrait['nombre'];
+            $this->apellido = $procesoTrait['apellido'];
+            $this->telefono = $procesoTrait['telefono'];
+            $this->direccion = $procesoTrait['direccion'];
+            $this->estado = 1;
+        } else {
+            return $procesoTrait;
+        }
+
 
         return $this->registerCliente();
     }
@@ -55,23 +67,26 @@ class Cliente extends Base
             $stmt->bindValue(5, $this->direccion);
             $stmt->bindValue(6, $this->estado);
 
-            $result = $stmt->execute();
+            $stmt->execute();
 
-            return $result;
+            return "Datos registrados correctamente";
         } catch (\PDOException $e) {
-            return "<script>alert('Error al registrar el cliente: " . $e->getMessage() . "');</script>";
+            return "Error al registrar el vehículo: {$e->getMessage()}";
         }
     }
 
-    public function updateCliente($cod_cliente, $cedula, $nombre, $apellido, $telefono, $direccion)
+    public function updateCliente(array $campos)
     {
-        $this->cod_cliente = $cod_cliente;
-        $this->cedula = $cedula;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->telefono = $telefono;
-        $this->direccion = $direccion;
+        $procesoTrait = $this->validarPost($campos);
 
+        if (is_array($procesoTrait)) {
+            $this->cod_cliente = $procesoTrait['cod-cliente'];
+            $this->cedula = $procesoTrait['cedula'];
+            $this->nombre = $procesoTrait['nombre'];
+            $this->apellido = $procesoTrait['apellido'];
+            $this->telefono = $procesoTrait['telefono'];
+            $this->direccion = $procesoTrait['direccion'];
+        }
         return $this->updateClienteById();
     }
 
@@ -92,13 +107,17 @@ class Cliente extends Base
 
             return "Cliente actualizado exitosamente";
         } catch (\PDOException $e) {
-            return "Error al actualizar el cliente: " . $e->getMessage();
+            return "Error al actualizar el vehículo: {$e->getMessage()}";
         }
     }
 
-    public function deleteCliente(int $cod_cliente)
+    public function deleteCliente(array $campos)
     {
-        $this->cod_cliente = $cod_cliente;
+        $procesoTrait = $this->validarPost($campos);
+
+        if (is_array($procesoTrait)) {
+            $this->cod_cliente = $procesoTrait['delete_id'];
+        }
 
         return $this->deleteClienteById();
     }
@@ -114,7 +133,7 @@ class Cliente extends Base
 
             return "Cliente eliminado exitosamente";
         } catch (\PDOException $e) {
-            return "Error al eliminar el cliente: " . $e->getMessage();
+            return "Error al eliminar el vehículo: {$e->getMessage()}";
         }
     }
 }
